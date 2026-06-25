@@ -1,26 +1,144 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-cormorant: "Cormorant Garamond", serif;
+  --font-inter: "Inter", sans-serif;
+  --brand-teal: #0dafbe;
+  --brand-gold: #fbc707;
+  --brand-orange: #f2521b;
+  --bg-base: #fdfaf5;
+  --bg-card: #ffffff;
+  --text-dark: #1a1a1a;
+  --text-muted: #555555;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-base);
+  color: var(--text-dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #0dafbe, #fbc707);
+  border-radius: 3px;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-left.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Keyframes */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes pulse-whatsapp {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(13, 175, 190, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(13, 175, 190, 0); }
+}
+
+.animate-float { animation: floatY 4s ease-in-out infinite; }
+.animate-fade-in-up { animation: fadeInUp 1s ease-out both; }
+.animate-whatsapp { animation: pulse-whatsapp 2s ease-in-out infinite; }
+
+/* Brand gradient text */
+.brand-gradient {
+  background: linear-gradient(135deg, #0dafbe, #fbc707, #f2521b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Shimmer text */
+.shimmer-text {
+  background: linear-gradient(90deg, #0dafbe 0%, #1a1a1a 40%, #fbc707 60%, #f2521b 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Section divider */
+.section-divider {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(to right, #0dafbe, #fbc707);
+  border-radius: 2px;
+  margin: 12px auto 24px;
+}
+
+/* Card hover */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(13, 175, 190, 0.1);
+}
+
+/* Enquiry section subtle pattern */
+.enquiry-pattern {
+  background-color: var(--bg-base);
+  background-image: radial-gradient(circle at 1px 1px, rgba(13, 175, 190, 0.07) 1px, transparent 0);
+  background-size: 28px 28px;
+}
+
+/* Navbar shadow on scroll */
+.nav-scrolled {
+  background: rgba(253, 250, 245, 0.97);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 24px rgba(26, 26, 26, 0.08);
+  border-bottom: 1px solid rgba(26, 26, 26, 0.06);
+}
+
+/* Input focus */
+.input-brand:focus {
+  outline: none;
+  border-color: #0dafbe;
+  box-shadow: 0 0 0 3px rgba(13, 175, 190, 0.1);
 }
