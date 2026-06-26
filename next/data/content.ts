@@ -11,8 +11,7 @@ export const ASSETS: AssetConfig = {
     "https://customer-assets.emergentagent.com/job_dc8c03e2-71dd-4b46-ac60-d052fa1bef4b/artifacts/x6d11zip_building-1.jpeg",
   heroVideo:
     "https://customer-assets.emergentagent.com/job_aarambh-luxury/artifacts/2dnrg61k_gemini_generated_video_8ddc231a.mp4",
-  aboutSketch:
-    "https://customer-assets.emergentagent.com/job_dc8c03e2-71dd-4b46-ac60-d052fa1bef4b/artifacts/knwtv025_ChatGPT%20Image%20Jun%2025%2C%202026%2C%2009_40_36%20PM.png",
+  aboutSketch: "/assets/building-frame-2.png",
 };
 
 export interface NavLink {
@@ -388,10 +387,10 @@ export interface ContactConfig {
 }
 
 export const CONTACT: ContactConfig = {
-  phone: "+91 98XXX XXXXX",
-  email: "sales@aarambhimperial.com",
+  phone: "+91 9967279772",
+  email: "aarambhrealty09@gmail.com",
   address: "V.P. Road & Kasturba Rd, Mulund West, Mumbai 400080",
   whatsapp:
-    "https://wa.me/919800000000?text=Hi%2C%20I%27m%20interested%20in%20Aarambh%20Imperial",
-  rera: "RERA Reg. No. : Applied / Pending",
+    "https://wa.me/919967279772?text=Hi%2C%20I%27m%20interested%20in%20Aarambh%20Imperial",
+  rera: "RERA Reg. No. : -",
 };

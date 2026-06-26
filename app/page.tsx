@@ -100,7 +100,7 @@ const CONFIGURATION_OPTIONS = [
 ]
 
 const MAP_EMBED_URL =
-  'https://maps.google.com/maps?q=V.P.+Road+%26+Kasturba+Road,+Mulund+West,+Mumbai+400080&z=15&output=embed'
+  "https://maps.google.com/maps?q=Imperial+By+Aarambh+Group,+V.+P.+Road,+%26,+Kasturba+Rd,+Mulund+West,+Mumbai,+Maharashtra+400080&t=&z=15&ie=UTF8&iwloc=&output=embed"
 
 const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? '919000000000'
 const WHATSAPP_MESSAGE = encodeURIComponent("Hi, I'm interested in Aarambh Imperial")

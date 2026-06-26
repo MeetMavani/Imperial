@@ -74,7 +74,7 @@ const Location: React.FC = () => {
               <iframe
                 title="Aarambh Imperial Location"
                 data-testid="location-map"
-                src="https://www.google.com/maps?q=Mulund+West,+Mumbai,+Maharashtra+400080&output=embed"
+                src="https://maps.google.com/maps?q=Imperial+By+Aarambh+Group,+V.+P.+Road,+%26,+Kasturba+Rd,+Mulund+West,+Mumbai,+Maharashtra+400080&t=&z=15&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="520"
                 style={{ border: 0, filter: "grayscale(0.2) contrast(0.95)" }}
