@@ -3,7 +3,11 @@
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import gsap from 'gsap'
-import FloorPlans from '@/components/FloorPlans'
+import FloorPlans from '@/next/components/FloorPlans'
+import About from '@/next/components/About'
+import Amenities from '@/next/components/Amenities'
+import Footer from '@/next/components/Footer'
+import Hero from '@/next/components/Hero'
 
 // ─── TYPES & CONSTANTS ───────────────────────────────────────────────────────
 
@@ -299,7 +303,7 @@ function Navbar() {
 
 // ─── HERO ──────────────────────────────────────────────────────────────────────
 
-function Hero() {
+function OldHero() {
   const sectionRef = useRef<HTMLElement>(null)
   const bgRef = useRef<HTMLDivElement>(null)
 
@@ -529,7 +533,7 @@ function Builder() {
 
 // ─── AMENITIES ─────────────────────────────────────────────────────────────────
 
-function Amenities() {
+function OldAmenities() {
   return (
     <section id="amenities" className="py-24 sm:py-32 bg-[#fdfaf5]">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
@@ -783,7 +787,7 @@ function WhatsAppButton() {
   )
 }
 
-function Footer() {
+function OldFooter() {
   return (
     <footer className="bg-[#1a1a1a] text-white">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 py-14">
@@ -839,8 +843,7 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero />
-      <Overview />
-      <Builder />
+      <About />
       <FloorPlans />
       <Amenities />
       <Location />

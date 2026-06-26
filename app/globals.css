@@ -1,5 +1,33 @@
 @import "tailwindcss";
 
+@theme {
+  --color-cream: #FDFAF5;
+  --color-charcoal: #1A1A1A;
+  --color-ink: #2A2A2A;
+  --color-muteink: #5A5A5A;
+  --color-teal: #0dafbe;
+  --color-teal-dark: #089aa6;
+  --color-gold: #fbc707;
+  --color-gold-dark: #d9a800;
+  --color-ember: #f2521b;
+  --color-ember-dark: #c93f0c;
+
+  --font-serif: var(--font-fraunces), serif;
+  --font-sans: var(--font-manrope), sans-serif;
+
+  --shadow-subtle: 0 4px 24px rgba(0, 0, 0, 0.04);
+  --shadow-lift: 0 12px 40px rgba(0, 0, 0, 0.08);
+
+  --letter-spacing-widestx: 0.25em;
+
+  --animate-floaty: floaty 2.4s ease-in-out infinite;
+
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+}
+
 :root {
   --font-cormorant: "Cormorant Garamond", serif;
   --font-inter: "Inter", sans-serif;
@@ -23,9 +51,47 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Custom selection highlight color */
+::selection {
+  background: #0dafbe;
+  color: #ffffff;
+}
+
+/* Subtle grain texture overlay */
+.grain {
+  position: relative;
+}
+
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* Sliding active tab underline */
+.tab-underline {
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  background: #0dafbe;
+  border-radius: 2px;
+  pointer-events: none;
+  will-change: transform, width;
+}
+
+
 /* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(to bottom, #0dafbe, #fbc707);
   border-radius: 3px;
@@ -36,28 +102,33 @@ body {
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
 }
+
 .reveal-left {
   opacity: 0;
   transform: translateX(-40px);
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 .reveal-left.active {
   opacity: 1;
   transform: translateX(0);
 }
+
 .reveal-right {
   opacity: 0;
   transform: translateX(40px);
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 .reveal-right.active {
   opacity: 1;
   transform: translateX(0);
@@ -65,25 +136,62 @@ body {
 
 /* Keyframes */
 @keyframes floatY {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
-}
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-@keyframes pulse-whatsapp {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(13, 175, 190, 0.4); }
-  50% { box-shadow: 0 0 0 12px rgba(13, 175, 190, 0); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
-.animate-float { animation: floatY 4s ease-in-out infinite; }
-.animate-fade-in-up { animation: fadeInUp 1s ease-out both; }
-.animate-whatsapp { animation: pulse-whatsapp 2s ease-in-out infinite; }
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes pulse-whatsapp {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(13, 175, 190, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 0 12px rgba(13, 175, 190, 0);
+  }
+}
+
+.animate-float {
+  animation: floatY 4s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 1s ease-out both;
+}
+
+.animate-whatsapp {
+  animation: pulse-whatsapp 2s ease-in-out infinite;
+}
 
 /* Brand gradient text */
 .brand-gradient {
@@ -116,6 +224,7 @@ body {
 .card-hover {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .card-hover:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 32px rgba(13, 175, 190, 0.1);
