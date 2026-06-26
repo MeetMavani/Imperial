@@ -792,7 +792,7 @@ function OldFooter() {
     <footer className="bg-[#1a1a1a] text-white">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 py-14">
         <div className="flex justify-center mb-10">
-            <Image src="/logo.svg" alt="Aarambh Imperial" width={120} height={48} className="h-10 w-auto object-contain" />
+          <Image src="/logo.svg" alt="Aarambh Imperial" width={120} height={48} className="h-10 w-auto object-contain" />
         </div>
 
         <div className="grid sm:grid-cols-3 gap-10 mb-10 text-center sm:text-left">

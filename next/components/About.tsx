@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import { useReveal } from "../hooks/useReveal";
-import { ASSETS, STATS } from "../data/content";
+import { ASSETS } from "../data/content";
 
 const About: React.FC = () => {
   const ref = useRef<HTMLElement>(null);
@@ -72,60 +72,43 @@ const About: React.FC = () => {
           </div>
         </div>
 
-        {/* Stats row */}
-        <div className="grid sm:grid-cols-3 gap-5 md:gap-7 mt-20">
-          {STATS.map((s, i) => (
-            <div
-              key={s.label}
-              data-reveal
-              data-reveal-delay={i * 0.08}
-              data-testid={`stat-card-${i}`}
-              className="bg-white border border-charcoal/8 p-8 shadow-subtle hover:shadow-lift transition-all duration-500 hover:-translate-y-1 group"
-            >
-              <div
-                className={`h-10 w-10 mb-5 flex items-center justify-center border ${
-                  s.accent === "teal"
-                    ? "border-teal text-teal"
-                    : s.accent === "gold"
-                    ? "border-gold-dark text-gold-dark"
-                    : "border-ember text-ember"
-                }`}
-              >
-                <span className="text-xs font-medium">0{i + 1}</span>
-              </div>
-              <div className="font-serif text-4xl md:text-5xl text-charcoal tracking-tight">
-                {s.value}
-              </div>
-              <div className="text-muteink text-sm uppercase tracking-widestx mt-2">
-                {s.label}
-              </div>
-            </div>
-          ))}
-        </div>
-
         {/* Mission strip */}
         <div
           data-reveal
           data-testid="mission-strip"
-          className="mt-16 bg-gradient-to-br from-white via-cream to-white border border-gold/30 px-8 py-10 md:px-12 md:py-12 grid md:grid-cols-2 gap-10 shadow-subtle"
+          className="mt-20 bg-gradient-to-br from-white via-cream to-white border border-gold/30 px-8 py-10 md:px-12 md:py-12 grid md:grid-cols-2 gap-10 shadow-subtle"
         >
           <div>
             <span className="text-xs uppercase tracking-widestx text-ember font-medium">
               Our Mission
             </span>
-            <p className="font-serif text-2xl md:text-3xl text-charcoal mt-3 leading-snug">
-              To craft homes that stand as a testament to design, durability and
-              the values of the families they shelter.
+            <p className="text-muteink text-base md:text-lg leading-relaxed mt-4">
+              Our mission is to consistently deliver exceptional quality that
+              exceeds all of our Clients expectations on every project we
+              undertake. Value projects as highly as our Clients and are
+              prepared to go the extra mile to deliver them.
             </p>
           </div>
           <div>
             <span className="text-xs uppercase tracking-widestx text-teal font-medium">
               Our Vision
             </span>
-            <p className="font-serif text-2xl md:text-3xl text-charcoal mt-3 leading-snug">
-              To redefine premium living in Mumbai — one landmark address at a
-              time, built with integrity, intention and an enduring eye.
-            </p>
+            <div className="text-muteink text-base md:text-lg leading-relaxed mt-4 flex flex-col gap-4">
+              <p>
+                Our Vision is to Deliver projects to the highest standards of
+                health & safety.
+              </p>
+              <p>
+                Continually differentiates ourselves from our competitors
+                through superior management skills, professionalism, integrity
+                and excellence. Anticipate and respond innovatively to Client
+                requirements.
+              </p>
+              <p>
+                Provide proactive team members focused on delivery of goals.
+                Provide continuously improving sustainability commitments.
+              </p>
+            </div>
           </div>
         </div>
       </div>
