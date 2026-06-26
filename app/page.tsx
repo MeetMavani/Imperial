@@ -225,11 +225,10 @@ function Heading({
 function Navbar() {
   const scrolled = useNavScroll()
   const [mobileOpen, setMobileOpen] = useState(false)
-  const onHero = !scrolled
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'nav-scrolled' : ''}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'nav-scrolled' : 'bg-[#fdfaf5]/75 backdrop-blur-sm border-b border-black/5'}`}
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="flex items-center justify-between py-4">
@@ -244,9 +243,9 @@ function Navbar() {
                 key={link.label}
                 href={link.href}
                 className="text-[11px] tracking-[0.2em] uppercase transition-colors duration-300"
-                style={{ color: onHero ? 'rgba(255,255,255,0.75)' : '#555555' }}
+                style={{ color: '#555555' }}
                 onMouseEnter={e => { e.currentTarget.style.color = '#0dafbe' }}
-                onMouseLeave={e => { e.currentTarget.style.color = onHero ? 'rgba(255,255,255,0.75)' : '#555555' }}
+                onMouseLeave={e => { e.currentTarget.style.color = '#555555' }}
               >
                 {link.label}
               </a>
@@ -268,7 +267,7 @@ function Navbar() {
 
           <button
             className="lg:hidden p-2 transition-colors"
-            style={{ color: onHero ? 'rgba(255,255,255,0.85)' : '#1a1a1a' }}
+            style={{ color: '#1a1a1a' }}
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >

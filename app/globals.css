@@ -181,6 +181,16 @@ body {
   }
 }
 
+@keyframes heroProgress {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
 .animate-float {
   animation: floatY 4s ease-in-out infinite;
 }

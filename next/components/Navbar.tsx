@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { ASSETS, NAV_LINKS } from "../data/content";
 
@@ -33,7 +34,7 @@ const Navbar: React.FC = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? "bg-cream/95 backdrop-blur-md shadow-subtle py-3"
-          : "bg-transparent py-5"
+          : "bg-cream/70 backdrop-blur-sm border-b border-charcoal/5 py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between">
@@ -43,24 +44,22 @@ const Navbar: React.FC = () => {
           data-testid="navbar-logo"
           className="flex items-center gap-3 group"
         >
-          {/* Using normal HTML img to match exact visual layout and behavior */}
-          <img
+          <Image
             src={ASSETS.logo}
             alt="Aarambh Imperial"
-            className="h-10 w-10 md:h-12 md:w-12 transition-transform duration-500 group-hover:rotate-3"
+            width={120}
+            height={48}
+            priority
+            className="h-10 w-auto md:h-12 transition-transform duration-500 group-hover:rotate-3"
           />
           <div className="flex flex-col leading-none">
             <span
-              className={`font-serif text-xl md:text-2xl tracking-tight ${
-                scrolled ? "text-charcoal" : "text-white"
-              }`}
+              className="font-serif text-xl md:text-2xl tracking-tight text-charcoal"
             >
               Aarambh Imperial
             </span>
             <span
-              className={`text-[10px] uppercase tracking-widestx mt-0.5 ${
-                scrolled ? "text-muteink" : "text-white/80"
-              }`}
+              className="text-[10px] uppercase tracking-widestx mt-0.5 text-muteink"
             >
               by Aarambh Group
             </span>
@@ -74,9 +73,7 @@ const Navbar: React.FC = () => {
               href={link.href}
               data-testid={`navbar-link-${link.label.toLowerCase()}`}
               onClick={(e) => handleNavClick(e, link.href)}
-              className={`text-sm tracking-wide transition-colors duration-300 hover:text-teal ${
-                scrolled ? "text-charcoal" : "text-white/90"
-              }`}
+              className="text-sm tracking-wide text-charcoal transition-colors duration-300 hover:text-teal"
             >
               {link.label}
             </a>
@@ -95,9 +92,7 @@ const Navbar: React.FC = () => {
           <button
             data-testid="navbar-mobile-toggle"
             onClick={() => setOpen((v) => !v)}
-            className={`lg:hidden p-2 rounded-md ${
-              scrolled ? "text-charcoal" : "text-white"
-            }`}
+            className="lg:hidden p-2 rounded-md text-charcoal"
             aria-label="Toggle menu"
           >
             {open ? <X size={22} /> : <Menu size={22} />}

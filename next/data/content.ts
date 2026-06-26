@@ -6,11 +6,9 @@ export interface AssetConfig {
 }
 
 export const ASSETS: AssetConfig = {
-  logo: "https://customer-assets.emergentagent.com/job_dc8c03e2-71dd-4b46-ac60-d052fa1bef4b/artifacts/qrmtse76_optimisied-logo.svg",
-  heroRender:
-    "https://customer-assets.emergentagent.com/job_dc8c03e2-71dd-4b46-ac60-d052fa1bef4b/artifacts/x6d11zip_building-1.jpeg",
-  heroVideo:
-    "https://customer-assets.emergentagent.com/job_aarambh-luxury/artifacts/2dnrg61k_gemini_generated_video_8ddc231a.mp4",
+  logo: "/assets/optimisied-logo.svg",
+  heroRender: "/assets/building-morning-desktop.png",
+  heroVideo: "/assets/hero-vid-desktop.mp4",
   aboutSketch: "/assets/building-frame-2.png",
 };
 
