@@ -168,7 +168,7 @@ const FloorPlans: React.FC = () => {
         {/* Tabs */}
         <div
           ref={tabsRef}
-          className="relative flex gap-0 mb-12 overflow-x-auto border-b border-black/8"
+          className="relative flex gap-0 mb-12 overflow-x-auto border-b border-black/8 no-scrollbar"
           role="tablist"
         >
           {FLOOR_TABS.map((t) => (

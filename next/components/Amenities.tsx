@@ -51,7 +51,7 @@ const Amenities: React.FC = () => {
             data-testid="amenities-heading"
             className="font-serif text-charcoal text-4xl md:text-5xl lg:text-6xl tracking-tight mt-4 leading-[1.05]"
           >
-            {total}+ Lifestyle <span className="italic text-gold-dark">Amenities</span>
+            Lifestyle <span className="italic text-gold-dark">Amenities</span>
           </h2>
           <p
             data-reveal
@@ -72,17 +72,15 @@ const Amenities: React.FC = () => {
               key={cat.id}
               onClick={() => setActiveId(cat.id)}
               data-testid={`amenity-cat-${cat.id}`}
-              className={`px-5 py-2.5 rounded-full text-xs md:text-sm tracking-wide transition-all duration-300 border ${
-                activeId === cat.id
+              className={`px-5 py-2.5 rounded-full text-xs md:text-sm tracking-wide transition-all duration-300 border ${activeId === cat.id
                   ? "bg-charcoal text-cream border-charcoal"
                   : "bg-white text-charcoal border-charcoal/15 hover:border-charcoal/40"
-              }`}
+                }`}
             >
               {cat.label}
               <span
-                className={`ml-2 text-[10px] ${
-                  activeId === cat.id ? "text-cream/70" : "text-muteink"
-                }`}
+                className={`ml-2 text-[10px] ${activeId === cat.id ? "text-cream/70" : "text-muteink"
+                  }`}
               >
                 {cat.items.length}
               </span>
