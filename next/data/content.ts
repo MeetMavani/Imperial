@@ -8,7 +8,7 @@ export interface AssetConfig {
 
 export const ASSETS: AssetConfig = {
   logo: "/assets/logo.webp",
-  heroRender: "/assets/building-morning-desktop.png",
+  heroRender: "/assets/hero-desktop-4.png",
   heroRenderMobile: "/assets/building-mourning-mobile.jpeg",
   heroVideo: "/assets/loader-sketch.mp4",
   aboutSketch: "/assets/building-frame.png",
@@ -173,27 +173,27 @@ export interface AmenityCategory {
 export const AMENITY_CATEGORIES: AmenityCategory[] = [
   {
     id: "fitness",
-    label: "Fitness & Sports",
+    label: "Fitness & Recreation",
     items: [
       {
         name: "Gymnasium",
         desc: "Fully equipped fitness studio with premium cardio and strength equipment for everyday training.",
-        url: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=900&q=70",
+        url: "/assets/amenities/gym.webp",
       },
       {
         name: "Multi-Purpose Court",
         desc: "An all-weather court for basketball, badminton and casual play under floodlights.",
-        url: "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&w=900&q=70",
+        url: "/assets/amenities/court.webp",
       },
       {
         name: "Yoga & Meditation Deck",
         desc: "A serene open-air deck framed by greenery — for daily practice, sunrise to sunset.",
-        url: "https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?auto=format&fit=crop&w=900&q=70",
+        url: "/assets/amenities/yoga.webp",
       },
       {
         name: "Jogging Track",
         desc: "A landscaped loop cushioned for comfort, weaving through gardens and quiet pockets.",
-        url: "https://images.unsplash.com/photo-1580041065738-e72023775cdc?auto=format&fit=crop&w=900&q=70",
+        url: "/assets/amenities/jog.webp",
       },
     ],
   },
@@ -204,43 +204,22 @@ export const AMENITY_CATEGORIES: AmenityCategory[] = [
       {
         name: "Kids Play Area",
         desc: "A vibrant, safe play zone with soft-fall surfaces and imaginative play structures.",
-        url: "https://images.unsplash.com/photo-1691272477702-0a2edae135f2?auto=format&fit=crop&w=900&q=70",
+        url: "/assets/amenities/play.webp",
       },
       {
         name: "Sand Pit",
         desc: "A timeless sand pit for sensory play, shaded by mature trees and seating for parents.",
-        url: "https://images.pexels.com/photos/12485724/pexels-photo-12485724.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      },
-    ],
-  },
-  {
-    id: "recreation",
-    label: "Recreation",
-    items: [
-      {
-        name: "Rooftop Sky Lounge",
-        desc: "A rooftop retreat with skyline views of Mulund — for sunset gatherings and quiet evenings.",
-        url: "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=900&q=70",
-      },
-      {
-        name: "Clubhouse",
-        desc: "A grand clubhouse for celebrations and community — bookable lounges and a private dining room.",
-        url: "https://images.unsplash.com/photo-1680609989998-6183fcea718b?auto=format&fit=crop&w=900&q=70",
+        url: "/assets/amenities/sand.webp",
       },
       {
         name: "Indoor Games Zone",
         desc: "Billiards, table tennis and board games — a refined corner for unwinding after work.",
-        url: "https://images.unsplash.com/photo-1720540244592-b4124532b318?auto=format&fit=crop&w=900&q=70",
+        url: "/assets/amenities/indoor.webp",
       },
       {
-        name: "Mini Theatre",
-        desc: "A private screening room with plush recliners and crisp acoustics — film nights, refined.",
-        url: "https://images.unsplash.com/photo-1676302144341-10563603f99a?auto=format&fit=crop&w=900&q=70",
-      },
-      {
-        name: "Party Lawn",
-        desc: "An open lawn framed by lanterns — designed for celebrations under the open sky.",
-        url: "https://images.pexels.com/photos/19141069/pexels-photo-19141069.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        name: "Exclusive Amenities Floor (Car-Free Kids Oasis)",
+        desc: "A dedicated, car-free recreation level for children to play, run and explore safely amidst curated play zones.",
+        url: "/assets/amenities/multi.webp",
       },
     ],
   },
@@ -249,29 +228,14 @@ export const AMENITY_CATEGORIES: AmenityCategory[] = [
     label: "Green & Relaxation",
     items: [
       {
-        name: "Landscaped Garden",
+        name: "Floral Paradise",
         desc: "Curated gardens with seasonal blooms, native trees and quiet seating nooks.",
-        url: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=70",
+        url: "/assets/amenities/flower.webp",
       },
       {
         name: "Senior Citizen Corner",
         desc: "A peaceful, shaded enclave with comfortable seating — for conversation and reflection.",
-        url: "https://images.pexels.com/photos/7222180/pexels-photo-7222180.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      },
-      {
-        name: "Walking Path",
-        desc: "A reflexology-inspired walking path weaving through gardens — mindful steps, every day.",
-        url: "https://images.pexels.com/photos/7061667/pexels-photo-7061667.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      },
-      {
-        name: "Swimming Pool",
-        desc: "A sculpted pool framed by a sun deck — a private resort, steps from your home.",
-        url: "https://images.unsplash.com/photo-1731336479432-3eb5fdb3ab1c?auto=format&fit=crop&w=900&q=70",
-      },
-      {
-        name: "Spa & Wellness",
-        desc: "An intimate spa with steam, sauna and treatment rooms — restorative rituals at home.",
-        url: "https://images.unsplash.com/photo-1678960591129-ff8db00462e2?auto=format&fit=crop&w=900&q=70",
+        url: "/assets/amenities/senior.webp",
       },
     ],
   },
@@ -282,30 +246,42 @@ export const AMENITY_CATEGORIES: AmenityCategory[] = [
       {
         name: "24/7 CCTV Security",
         desc: "Comprehensive surveillance across all common areas, lobbies and entries.",
-        url: "https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=900&q=70",
+        url: "/assets/amenities/cctv.webp",
+      },
+
+      {
+        name: "Power Backup for Common Amenities",
+        desc: "Power backup for all elevators, pumps and essential services — seamless living, uninterrupted.",
+        url: "/assets/amenities/power.webp",
       },
       {
-        name: "High-Speed Elevators",
-        desc: "Smooth, whisper-quiet elevators with destination control and dedicated service lifts.",
-        url: "https://images.unsplash.com/photo-1545179605-1296651e9d43?auto=format&fit=crop&w=900&q=70",
-      },
-      {
-        name: "Covered Parking",
-        desc: "Allocated covered parking across multi-level podium — every resident, accounted for.",
-        url: "https://images.unsplash.com/photo-1577086664693-894d8405334a?auto=format&fit=crop&w=900&q=70",
-      },
-      {
-        name: "Video Door Phone",
-        desc: "Smart in-apartment video door phones with intercom to lobby and security.",
-        url: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=900&q=70",
-      },
-      {
-        name: "Boom Barrier Access",
-        desc: "Secure boom barriers with RFID — controlled entry for residents and registered guests.",
-        url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=70",
-      },
+        name: "Fire Fighting System",
+        desc:"State-of-the-art fire detection and suppression systems across all floors with emergency response infrastructure.",
+        url: "/assets/amenities/fire.webp",
+      }
     ],
   },
+  {
+    id: "mobility",
+    label: "Mobility & Infrastructure",
+    items: [
+      {
+        name: "2-High-Speed Elevators",
+        desc: "Smooth, whisper-quiet elevators with destination control and dedicated service lifts.",
+        url: "/assets/amenities/lift.webp",
+      },
+      {
+        name: "EV Charging Stations",
+        desc: "Dedicated charging points for electric vehicles across parking zones with smart energy monitoring.",
+        url: "/assets/amenities/ev.webp",
+      },
+      {
+        name: "Safety Stretcher Lift",
+        desc: "Wide, high-capacity stretcher lifts for emergencies, ensuring prompt and safe medical transport.",
+        url: "/assets/amenities/stretcher.webp",
+      }
+    ],
+  }
 ];
 
 export interface LocationCategory {

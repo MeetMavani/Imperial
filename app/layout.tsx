@@ -20,6 +20,9 @@ export const metadata: Metadata = {
     "Discover Aarambh Imperial — premium 2 BHK and 3 BHK residences in Mulund West, Mumbai. 18,000 sq ft of amenities, strategic connectivity, and world-class construction.",
   keywords:
     "Aarambh Imperial, Mulund West flats, 2BHK 3BHK Mumbai, premium residences Mulund, Aarambh builder Mumbai",
+  icons: {
+    icon: "/assets/favicon-32x32.png",
+  },
   openGraph: {
     title: "Aarambh Imperial — Premium Residences in Mulund West, Mumbai",
     description:
