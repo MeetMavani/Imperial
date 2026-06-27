@@ -4,11 +4,18 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { BedDouble, Bath, Maximize2, Compass, Lock, Check, AlertCircle } from "lucide-react";
-import { FLOOR_TABS, FloorTabSingle, FloorTabGallery } from "../data/content";
+import { FLOOR_TABS, FloorTabSingle, FloorTabGallery, CONFIGURATIONS } from "../data/content";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 
-const SHEET_URL = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec";
+const SHEET_URL = process.env.NEXT_PUBLIC_SHEET_URL || "";
 
 // ─── Full-Screen Gate Modal ───────────────────────────────────────────────────
 
@@ -16,17 +23,33 @@ interface GateModalProps {
   onUnlocked: () => void;
 }
 
+interface GateFormState {
+  name: string;
+  email: string;
+  phone: string;
+  config: string;
+  message: string;
+}
+
 const GateModal: React.FC<GateModalProps> = ({ onUnlocked }) => {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [form, setForm] = useState<GateFormState>({
+    name: "",
+    email: "",
+    phone: "",
+    config: "",
+    message: "",
+  });
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [error, setError] = useState("");
   const backdropRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
 
+  const onChange = (key: keyof GateFormState, value: string) => {
+    setForm((f) => ({ ...f, [key]: value }));
+  };
+
   // Animate in
   useEffect(() => {
-    // Lock body scroll
     document.body.style.overflow = "hidden";
 
     if (backdropRef.current) {
@@ -46,8 +69,10 @@ const GateModal: React.FC<GateModalProps> = ({ onUnlocked }) => {
   }, []);
 
   const validate = (): string => {
-    if (!name.trim()) return "Please enter your name.";
-    if (!/^[0-9+\-\s()]{7,}$/.test(phone.trim())) return "Please enter a valid phone number.";
+    if (!form.name.trim()) return "Please enter your full name.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) return "Please enter a valid email address.";
+    if (!/^[0-9+\-\s()]{7,}$/.test(form.phone.trim())) return "Please enter a valid phone number.";
+    if (!form.config) return "Please choose a configuration.";
     return "";
   };
 
@@ -65,10 +90,12 @@ const GateModal: React.FC<GateModalProps> = ({ onUnlocked }) => {
         mode: "no-cors",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: name.trim(),
-          phone: phone.trim(),
+          name: form.name.trim(),
+          email: form.email.trim(),
+          phone: form.phone.trim(),
+          config: form.config,
+          message: form.message.trim(),
           source: "Floor Plan Gate",
-          timestamp: new Date().toISOString(),
         }),
       });
       setStatus("success");
@@ -155,9 +182,22 @@ const GateModal: React.FC<GateModalProps> = ({ onUnlocked }) => {
                   <input
                     id="gate-name"
                     type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Aarav Mehta"
+                    value={form.name}
+                    onChange={(e) => onChange("name", e.target.value)}
+                    placeholder="e.g. Aarav Mehta"
+                    className="mt-2 w-full bg-transparent border-b border-charcoal/20 focus:border-teal py-2.5 text-charcoal placeholder:text-muteink/40 outline-none transition-colors text-sm"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="gate-email" className="text-[11px] uppercase tracking-widestx text-muteink">
+                    Email Address
+                  </label>
+                  <input
+                    id="gate-email"
+                    type="email"
+                    value={form.email}
+                    onChange={(e) => onChange("email", e.target.value)}
+                    placeholder="e.g. aarav@example.com"
                     className="mt-2 w-full bg-transparent border-b border-charcoal/20 focus:border-teal py-2.5 text-charcoal placeholder:text-muteink/40 outline-none transition-colors text-sm"
                   />
                 </div>
@@ -168,29 +208,65 @@ const GateModal: React.FC<GateModalProps> = ({ onUnlocked }) => {
                   <input
                     id="gate-phone"
                     type="tel"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    value={form.phone}
+                    onChange={(e) => onChange("phone", e.target.value)}
                     placeholder="+91 98XXX XXXXX"
                     className="mt-2 w-full bg-transparent border-b border-charcoal/20 focus:border-teal py-2.5 text-charcoal placeholder:text-muteink/40 outline-none transition-colors text-sm"
                   />
                 </div>
+                <div>
+                  <label className="text-[11px] uppercase tracking-widestx text-muteink">
+                    Configuration Interested In
+                  </label>
+                  <div className="mt-2">
+                    <Select
+                      value={form.config}
+                      onValueChange={(v) => onChange("config", v)}
+                    >
+                      <SelectTrigger
+                        className="w-full bg-transparent border-0 border-b border-charcoal/20 rounded-none focus:ring-0 focus:border-teal px-0 py-2.5 text-charcoal text-sm"
+                      >
+                        <SelectValue placeholder="Select a configuration" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {CONFIGURATIONS.map((c) => (
+                          <SelectItem key={c.value} value={c.value}>
+                            {c.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="gate-msg" className="text-[11px] uppercase tracking-widestx text-muteink">
+                    Message <span className="normal-case text-muteink/60">(optional)</span>
+                  </label>
+                  <textarea
+                    id="gate-msg"
+                    rows={3}
+                    value={form.message}
+                    onChange={(e) => onChange("message", e.target.value)}
+                    placeholder="Tell us anything else we should know…"
+                    className="mt-2 w-full bg-transparent border-b border-charcoal/20 focus:border-teal py-2.5 text-charcoal placeholder:text-muteink/40 outline-none resize-none transition-colors text-sm"
+                  />
+                </div>
 
                 {status === "error" && error && (
-                  <div className="flex items-center gap-2 text-ember text-xs pt-1">
-                    <AlertCircle size={13} />
-                    <span>{error}</span>
+                  <div className="flex items-start gap-3 p-4 border border-ember/30 bg-ember/5 text-charcoal">
+                    <AlertCircle size={18} className="text-ember mt-0.5 flex-shrink-0" />
+                    <p className="text-sm">{error}</p>
                   </div>
                 )}
 
                 <button
                   type="submit"
                   disabled={status === "submitting"}
-                  className="mt-2 w-full inline-flex items-center justify-center px-6 py-3.5 rounded-full bg-teal text-white text-[11px] uppercase tracking-widestx font-medium hover:bg-teal-dark transition-all duration-300 hover:shadow-lift disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="mt-2 w-full inline-flex items-center justify-center px-6 py-4 rounded-full bg-teal text-white text-sm uppercase tracking-widestx font-medium hover:bg-teal-dark transition-all duration-300 hover:shadow-lift disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {status === "submitting" ? "Sending…" : "Unlock All Floor Plans"}
                 </button>
 
-                {/* No dismiss / skip option — intentional */}
                 <p className="text-center text-[11px] text-muteink/50 pt-1">
                   By submitting, you agree to be contacted by our team.
                 </p>

@@ -21,26 +21,16 @@ const Footer: React.FC = () => {
       className="bg-charcoal text-cream/85"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-10 pt-20 pb-10">
-        {/* Top: Logo */}
-        <div className="flex flex-col items-center text-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={ASSETS.logo}
-            alt="Aarambh Imperial"
-            className="h-16 w-16 md:h-20 md:w-20"
-          />
-          <h3 className="font-serif text-3xl md:text-4xl text-white tracking-tight mt-5">
-            Aarambh Imperial
-          </h3>
-          <p className="text-cream/60 text-sm uppercase tracking-widestx mt-2">
-            Premium Residences. Timeless Living.
-          </p>
-        </div>
-
-        <div className="my-12 h-px bg-white/10" />
-
         {/* Columns */}
-        <div className="grid md:grid-cols-3 gap-12 md:gap-10">
+        <div className="grid md:grid-cols-4 gap-12 md:gap-10 items-start">
+          <div className="flex flex-col items-center md:items-start">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={ASSETS.logo}
+              alt="Aarambh Imperial Logo"
+              className="h-32 w-32 md:h-56 md:w-56 object-contain md:object-left -mt-6"
+            />
+          </div>
           <div>
             <h4 className="text-white text-sm uppercase tracking-widestx">
               About
@@ -111,15 +101,6 @@ const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs uppercase tracking-widestx text-cream/50">
           <p data-testid="footer-copyright">
             © 2026 Aarambh Imperial. All rights reserved.
-          </p>
-          <p>
-            Developed by{" "}
-            <a
-              href="#"
-              className="text-teal hover:text-white transition-colors"
-            >
-              Nirmaan
-            </a>
           </p>
         </div>
       </div>

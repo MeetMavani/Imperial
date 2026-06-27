@@ -1,15 +1,17 @@
 export interface AssetConfig {
   logo: string;
   heroRender: string;
+  heroRenderMobile: string;
   heroVideo: string;
   aboutSketch: string;
 }
 
 export const ASSETS: AssetConfig = {
-  logo: "/assets/optimisied-logo.svg",
+  logo: "/assets/logo.webp",
   heroRender: "/assets/building-morning-desktop.png",
-  heroVideo: "/assets/hero-vid-desktop.mp4",
-  aboutSketch: "/assets/building-frame-2.png",
+  heroRenderMobile: "/assets/building-mourning-mobile.jpeg",
+  heroVideo: "/assets/loader-sketch.mp4",
+  aboutSketch: "/assets/building-frame.png",
 };
 
 export interface NavLink {

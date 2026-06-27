@@ -49,7 +49,7 @@ const Navbar: React.FC = () => {
             alt="Aarambh Imperial"
             width={120}
             height={48}
-            priority
+            loading="eager"
             className="h-10 w-auto md:h-12 transition-transform duration-500 group-hover:rotate-3"
           />
           <div className="flex flex-col leading-none">

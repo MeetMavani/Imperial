@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import gsap from 'gsap'
 import FloorPlans from '@/next/components/FloorPlans'
@@ -8,6 +8,12 @@ import About from '@/next/components/About'
 import Amenities from '@/next/components/Amenities'
 import Footer from '@/next/components/Footer'
 import Hero from '@/next/components/Hero'
+import SiteLoader from '@/next/components/SiteLoader'
+
+// ─── SITE LOADER TOGGLE ──────────────────────────────────────────────────────
+// Set to `true` to show the cinematic intro video on page load.
+// Set to `false` to skip it entirely.
+const ENABLE_SITE_LOADER = false
 
 // ─── TYPES & CONSTANTS ───────────────────────────────────────────────────────
 
@@ -33,6 +39,7 @@ interface ConnectivityCategory {
 
 interface EnquiryForm {
   name: string
+  email: string
   phone: string
   configuration: string
   message: string
@@ -234,7 +241,7 @@ function Navbar() {
         <div className="flex items-center justify-between py-4">
 
           <a href="#" className="shrink-0">
-            <Image src="/logo.svg" alt="Aarambh Imperial" width={120} height={48} className="h-10 w-auto object-contain" />
+            <Image src="/logo.svg" alt="Aarambh Imperial" width={120} height={48} loading="eager" className="h-10 w-auto object-contain" />
           </a>
 
           <div className="hidden lg:flex items-center gap-8">
@@ -651,24 +658,30 @@ function Location() {
 // ─── ENQUIRY ───────────────────────────────────────────────────────────────────
 
 function Enquire() {
-  const [form, setForm] = useState<EnquiryForm>({ name: '', phone: '', configuration: '', message: '' })
+  const [form, setForm] = useState<EnquiryForm>({ name: '', email: '', phone: '', configuration: '', message: '' })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('loading')
     try {
-      const res = await fetch(process.env.NEXT_PUBLIC_FORM_URL!, {
+      const url = process.env.NEXT_PUBLIC_FORM_URL || process.env.NEXT_PUBLIC_SHEET_URL || ''
+      await fetch(url, {
         method: 'POST',
+        mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, timestamp: new Date().toISOString() }),
+        body: JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim(),
+          phone: form.phone.trim(),
+          config: form.configuration,
+          message: form.message.trim(),
+          source: "Enquiry Form",
+          timestamp: new Date().toISOString(),
+        }),
       })
-      if (res.ok) {
-        setStatus('success')
-        setForm({ name: '', phone: '', configuration: '', message: '' })
-      } else {
-        setStatus('error')
-      }
+      setStatus('success')
+      setForm({ name: '', email: '', phone: '', configuration: '', message: '' })
     } catch {
       setStatus('error')
     }
@@ -708,6 +721,17 @@ function Enquire() {
                   value={form.name}
                   onChange={e => setForm(p => ({ ...p, name: e.target.value }))}
                   placeholder="Your full name"
+                  className={fieldClass}
+                />
+              </div>
+              <div>
+                <label className="block text-[10px] tracking-[0.2em] uppercase text-[#555555] mb-2">Email Address *</label>
+                <input
+                  type="email"
+                  required
+                  value={form.email}
+                  onChange={e => setForm(p => ({ ...p, email: e.target.value }))}
+                  placeholder="Your email address"
                   className={fieldClass}
                 />
               </div>
@@ -837,18 +861,27 @@ function OldFooter() {
 
 export default function Home() {
   useScrollReveal()
+  const [siteReady, setSiteReady] = useState(!ENABLE_SITE_LOADER)
+
+  const onLoaderFinish = useCallback(() => {
+    setSiteReady(true)
+  }, [])
 
   return (
-    <main>
-      <Navbar />
-      <Hero />
-      <About />
-      <FloorPlans />
-      <Amenities />
-      <Location />
-      <Enquire />
-      <Footer />
-      <WhatsAppButton />
-    </main>
+    <>
+      <SiteLoader enabled={ENABLE_SITE_LOADER} onFinish={onLoaderFinish} />
+
+      <main>
+        <Navbar />
+        <Hero loaded={siteReady} />
+        <About />
+        <FloorPlans />
+        <Amenities />
+        <Location />
+        <Enquire />
+        <Footer />
+        <WhatsAppButton />
+      </main>
+    </>
   )
 }

@@ -12,8 +12,16 @@ import {
 } from "./ui/select";
 import { CONFIGURATIONS } from "../data/content";
 
+// ─── Config ───────────────────────────────────────────────────────────────────
+// Same URL as FloorPlans.tsx — one script handles both forms via the `source` field
+
+const SHEET_URL = process.env.NEXT_PUBLIC_SHEET_URL || "";
+
+// ─── Types ────────────────────────────────────────────────────────────────────
+
 interface FormState {
   name: string;
+  email: string;
   phone: string;
   config: string;
   message: string;
@@ -21,17 +29,20 @@ interface FormState {
 
 type SubmitStatus = "idle" | "submitting" | "success" | "error";
 
+// ─── Component ────────────────────────────────────────────────────────────────
+
 const Enquiry: React.FC = () => {
   const ref = useRef<HTMLElement>(null);
   useReveal(ref);
 
   const [form, setForm] = useState<FormState>({
     name: "",
+    email: "",
     phone: "",
     config: "",
     message: "",
   });
-  const [status, setStatus] = useState<SubmitStatus>("idle"); // idle | submitting | success | error
+  const [status, setStatus] = useState<SubmitStatus>("idle");
   const [error, setError] = useState<string>("");
 
   const onChange = (key: keyof FormState, value: string) => {
@@ -40,28 +51,50 @@ const Enquiry: React.FC = () => {
 
   const validate = (): string => {
     if (!form.name.trim()) return "Please enter your full name.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim()))
+      return "Please enter a valid email address.";
     if (!/^[0-9+\-\s()]{7,}$/.test(form.phone.trim()))
       return "Please enter a valid phone number.";
     if (!form.config) return "Please choose a configuration.";
     return "";
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const v = validate();
     if (v) {
       setError(v);
       setStatus("error");
       return;
     }
+
     setError("");
     setStatus("submitting");
-    // UI only — simulate submission delay
-    const timer = setTimeout(() => {
+
+    try {
+      await fetch(SHEET_URL, {
+        method: "POST",
+        mode: "no-cors", // required for Apps Script — response will be opaque
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim(),
+          phone: form.phone.trim(),
+          config: form.config,
+          message: form.message.trim(),
+          source: "Enquiry Form",
+          timestamp: new Date().toISOString(),
+        }),
+      });
+
+      // no-cors means we can't read the response status, so assume success
       setStatus("success");
-      setForm({ name: "", phone: "", config: "", message: "" });
-    }, 900);
-    return () => clearTimeout(timer);
+      setForm({ name: "", email: "", phone: "", config: "", message: "" });
+    } catch {
+      setStatus("error");
+      setError("Something went wrong. Please check your connection and try again.");
+    }
   };
 
   return (
@@ -71,19 +104,19 @@ const Enquiry: React.FC = () => {
       data-testid="enquiry-section"
       className="relative bg-cream py-24 md:py-32 grain overflow-hidden"
     >
-      {/* Subtle pattern */}
+      {/* Subtle dot pattern */}
       <div className="absolute inset-0 opacity-[0.06] pointer-events-none">
         <div
           className="w-full h-full"
           style={{
-            backgroundImage:
-              "radial-gradient(#1A1A1A 1px, transparent 1px)",
+            backgroundImage: "radial-gradient(#1A1A1A 1px, transparent 1px)",
             backgroundSize: "28px 28px",
           }}
         />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6 md:px-10">
+        {/* Heading */}
         <div className="text-center max-w-2xl mx-auto">
           <span
             data-reveal
@@ -108,6 +141,7 @@ const Enquiry: React.FC = () => {
           </p>
         </div>
 
+        {/* Form card */}
         <form
           onSubmit={onSubmit}
           data-reveal
@@ -116,6 +150,7 @@ const Enquiry: React.FC = () => {
           noValidate
         >
           <div className="space-y-5">
+            {/* Name */}
             <div>
               <label
                 htmlFor="enq-name"
@@ -133,6 +168,27 @@ const Enquiry: React.FC = () => {
                 className="mt-2 w-full bg-transparent border-b border-charcoal/20 focus:border-teal py-2.5 text-charcoal placeholder:text-muteink/50 outline-none transition-colors"
               />
             </div>
+
+            {/* Email */}
+            <div>
+              <label
+                htmlFor="enq-email"
+                className="text-[11px] uppercase tracking-widestx text-muteink"
+              >
+                Email Address
+              </label>
+              <input
+                id="enq-email"
+                type="email"
+                value={form.email}
+                onChange={(e) => onChange("email", e.target.value)}
+                data-testid="enquiry-email-input"
+                placeholder="e.g. aarav@example.com"
+                className="mt-2 w-full bg-transparent border-b border-charcoal/20 focus:border-teal py-2.5 text-charcoal placeholder:text-muteink/50 outline-none transition-colors"
+              />
+            </div>
+
+            {/* Phone */}
             <div>
               <label
                 htmlFor="enq-phone"
@@ -150,6 +206,8 @@ const Enquiry: React.FC = () => {
                 className="mt-2 w-full bg-transparent border-b border-charcoal/20 focus:border-teal py-2.5 text-charcoal placeholder:text-muteink/50 outline-none transition-colors"
               />
             </div>
+
+            {/* Config */}
             <div>
               <label className="text-[11px] uppercase tracking-widestx text-muteink">
                 Configuration Interested In
@@ -179,12 +237,15 @@ const Enquiry: React.FC = () => {
                 </Select>
               </div>
             </div>
+
+            {/* Message */}
             <div>
               <label
                 htmlFor="enq-msg"
                 className="text-[11px] uppercase tracking-widestx text-muteink"
               >
-                Message <span className="normal-case text-muteink/60">(optional)</span>
+                Message{" "}
+                <span className="normal-case text-muteink/60">(optional)</span>
               </label>
               <textarea
                 id="enq-msg"
@@ -198,6 +259,7 @@ const Enquiry: React.FC = () => {
             </div>
           </div>
 
+          {/* Submit */}
           <button
             type="submit"
             disabled={status === "submitting"}
@@ -207,6 +269,7 @@ const Enquiry: React.FC = () => {
             {status === "submitting" ? "Sending…" : "Send Enquiry"}
           </button>
 
+          {/* Success */}
           {status === "success" && (
             <div
               data-testid="enquiry-success"
@@ -218,15 +281,14 @@ const Enquiry: React.FC = () => {
               </p>
             </div>
           )}
+
+          {/* Error */}
           {status === "error" && error && (
             <div
               data-testid="enquiry-error"
               className="mt-5 flex items-start gap-3 p-4 border border-ember/30 bg-ember/5 text-charcoal"
             >
-              <AlertCircle
-                size={18}
-                className="text-ember mt-0.5 flex-shrink-0"
-              />
+              <AlertCircle size={18} className="text-ember mt-0.5 flex-shrink-0" />
               <p className="text-sm">{error}</p>
             </div>
           )}
