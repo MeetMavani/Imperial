@@ -226,7 +226,7 @@ const About: React.FC = () => {
 
             {/* ── Background images ── */}
             {/* Mobile background (shown on < md) */}
-            <div className="relative w-full md:hidden" style={{ paddingBottom: '210%' }}>
+            <div className="relative w-full md:hidden" style={{ paddingBottom: '215%' }}>
               <Image
                 src="/assets/mission-vision/mission-vision-mobile.png"
                 alt=""
@@ -253,7 +253,7 @@ const About: React.FC = () => {
 
             {/* ── Content overlay ── */}
             <div className="absolute inset-0 flex flex-col justify-center
-              px-7 py-10
+              px-6 py-6
               md:px-16 md:py-14
               lg:px-24
             ">
@@ -269,7 +269,7 @@ const About: React.FC = () => {
                     delivered with care.
                   </span>
                 </h3>
-                <p className="mt-5 text-[14px] sm:text-[15px] leading-relaxed text-muteink
+                <p className="mt-3 md:mt-5 text-[14px] sm:text-[15px] leading-relaxed text-muteink
                   md:mx-auto md:max-w-xl lg:max-w-2xl">
                   Every line of planning, safety, and execution is measured
                   against one promise: lasting value for the people who trust
@@ -278,12 +278,12 @@ const About: React.FC = () => {
               </div>
 
               {/* ── Items: stacked on mobile, side-by-side on desktop ── */}
-              <div className="mt-8 border-t border-charcoal/15
+              <div className="mt-5 md:mt-8 border-t border-charcoal/15
                 md:grid md:grid-cols-2 md:gap-0
               ">
 
                 {/* 01 — Mission */}
-                <div className="flex gap-5 pt-7 pb-7 border-b border-charcoal/10
+                <div className="flex gap-4 pt-4 pb-4 md:pt-7 md:pb-7 border-b border-charcoal/10
                   md:pb-0 md:border-b-0 md:border-r md:pr-10 lg:pr-14
                 ">
                   <span
@@ -308,7 +308,7 @@ const About: React.FC = () => {
                 </div>
 
                 {/* 02 — Vision */}
-                <div className="flex gap-5 pt-7
+                <div className="flex gap-4 pt-4 md:pt-7
                   md:pl-10 lg:pl-14
                 ">
                   <span
