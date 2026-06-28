@@ -1,37 +1,70 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
+import { MapPin } from "lucide-react";
 import { useReveal } from "../hooks/useReveal";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "./ui/accordion";
-import {
-  Train,
-  GraduationCap,
-  HeartPulse,
-  ShoppingBag,
-  MapPin,
-  type LucideIcon,
-} from "lucide-react";
-import { LOCATION_CATEGORIES, CONTACT } from "../data/content";
+import { CONTACT } from "../data/content";
 
-const ICONS: Record<string, LucideIcon> = {
-  Train,
-  GraduationCap,
-  HeartPulse,
-  ShoppingBag,
-};
+interface ConnectivityItem {
+  name: string;
+  distanceKm: number;
+}
 
-const colorClasses: Record<string, string> = {
-  teal: "text-teal border-teal/30 bg-teal/5",
-  gold: "text-gold-dark border-gold/40 bg-gold/5",
-  ember: "text-ember border-ember/30 bg-ember/5",
-};
+interface ConnectivityCategory {
+  category: string;
+  color: string;
+  items: ConnectivityItem[];
+}
+
+const CONNECTIVITY: ConnectivityCategory[] = [
+  {
+    category: "Transport",
+    color: "#0dafbe",
+    items: [
+      { name: "Mulund Railway Station", distanceKm: 1.2 },
+      { name: "LBS Marg", distanceKm: 0.4 },
+      { name: "Eastern Express Highway", distanceKm: 1.6 },
+      { name: "Proposed Metro Station", distanceKm: 0.9 },
+      { name: "BEST Bus Depot", distanceKm: 0.7 },
+      { name: "Panch Rasta Junction", distanceKm: 1.1 },
+    ],
+  },
+  {
+    category: "Education",
+    color: "#fbc707",
+    items: [
+      { name: "NES International School", distanceKm: 1.8 },
+      { name: "Billabong High International School", distanceKm: 2.1 },
+      { name: "St. Mary's Convent High School", distanceKm: 1.4 },
+      { name: "V.G. Vaze College", distanceKm: 2.3 },
+    ],
+  },
+  {
+    category: "Health",
+    color: "#f2521b",
+    items: [
+      { name: "Fortis Hospital, Mulund", distanceKm: 1.1 },
+      { name: "Jupiter Hospital, Thane", distanceKm: 3.8 },
+      { name: "Apex Hospitals", distanceKm: 2.4 },
+    ],
+  },
+  {
+    category: "Shopping",
+    color: "#0dafbe",
+    items: [
+      { name: "D-Mart", distanceKm: 0.9 },
+      { name: "R Mall", distanceKm: 2.0 },
+      { name: "Banks & ATMs", distanceKm: 0.3 },
+      { name: "Local Markets", distanceKm: 0.6 },
+    ],
+  },
+];
+
+const MAP_EMBED_URL =
+  "https://maps.google.com/maps?q=Imperial+By+Aarambh+Group,+V.+P.+Road,+%26,+Kasturba+Rd,+Mulund+West,+Mumbai,+Maharashtra+400080&t=&z=15&ie=UTF8&iwloc=&output=embed";
 
 const Location: React.FC = () => {
+  const [activeTab, setActiveTab] = useState(0);
   const ref = useRef<HTMLElement>(null);
   useReveal(ref);
 
@@ -55,7 +88,7 @@ const Location: React.FC = () => {
             data-testid="location-heading"
             className="font-serif text-charcoal text-4xl md:text-5xl lg:text-6xl tracking-tight mt-4 leading-[1.05]"
           >
-            Perfectly <span className="italic text-gold-dark">Connected</span>
+            Perfectly <span className="italic text-teal">Connected</span>
           </h2>
           <p
             data-reveal
@@ -66,83 +99,62 @@ const Location: React.FC = () => {
           </p>
         </div>
 
-        <div className="mt-16 grid lg:grid-cols-2 gap-10 lg:gap-14">
+        <div className="mt-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
           {/* Map */}
-          <div data-reveal className="relative">
-            <div className="absolute -top-4 -left-4 w-20 h-20 border-t border-l border-teal/40 hidden md:block" />
-            <div className="bg-white shadow-subtle overflow-hidden">
-              <iframe
-                title="Aarambh Imperial Location"
-                data-testid="location-map"
-                src="https://maps.google.com/maps?q=Imperial+By+Aarambh+Group,+V.+P.+Road,+%26,+Kasturba+Rd,+Mulund+West,+Mumbai,+Maharashtra+400080&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                width="100%"
-                height="520"
-                style={{ border: 0, filter: "grayscale(0.2) contrast(0.95)" }}
-                allowFullScreen={true}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
+          <div data-reveal className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[480px] overflow-hidden shadow-subtle border border-black/5 rounded-xl card-hover w-full">
+            <iframe
+              title="Aarambh Imperial Location"
+              data-testid="location-map"
+              src={MAP_EMBED_URL}
+              className="absolute inset-0 w-full h-full border-0"
+              style={{ filter: "grayscale(0.2) contrast(0.95)" }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
 
-          {/* Accordion */}
-          <div data-reveal>
-            <Accordion
-              type="single"
-              collapsible
-              defaultValue={LOCATION_CATEGORIES[0].id}
-              className="space-y-3"
-            >
-              {LOCATION_CATEGORIES.map((cat) => {
-                const Icon = ICONS[cat.icon] || MapPin;
-                return (
-                  <AccordionItem
-                    key={cat.id}
-                    value={cat.id}
-                    className="border border-charcoal/10 bg-cream/40 px-5 md:px-6"
-                    data-testid={`location-accordion-${cat.id}`}
-                  >
-                    <AccordionTrigger className="hover:no-underline py-5">
-                      <div className="flex items-center gap-4">
-                        <span
-                          className={`h-10 w-10 inline-flex items-center justify-center rounded-full border ${
-                            colorClasses[cat.color] || ""
-                          }`}
-                        >
-                          <Icon size={18} />
-                        </span>
-                        <span className="font-serif text-xl md:text-2xl text-charcoal tracking-tight text-left">
-                          {cat.label}
-                        </span>
-                      </div>
-                    </AccordionTrigger>
-                    <AccordionContent className="pb-5">
-                      <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2 pl-14">
-                        {cat.items.map((item) => {
-                          const distanceLabel =
-                            item.distanceKm !== undefined
-                              ? ` — ${item.distanceKm.toFixed(1)} km`
-                              : "";
+          {/* Tabbed Info */}
+          <div data-reveal className="flex flex-col gap-6 w-full">
+            <div className="flex flex-wrap gap-2">
+              {CONNECTIVITY.map((cat, i) => (
+                <button
+                  key={cat.category}
+                  onClick={() => setActiveTab(i)}
+                  className="px-4 py-2 text-[11px] tracking-[0.12em] uppercase rounded-full transition-all duration-300 font-semibold"
+                  style={{
+                    background: activeTab === i ? cat.color : "transparent",
+                    color: activeTab === i ? (cat.color === "#fbc707" ? "#1a1a1a" : "#ffffff") : "#555555",
+                    border: `1px solid ${activeTab === i ? cat.color : "rgba(26,26,26,0.12)"}`,
+                  }}
+                >
+                  {cat.category}
+                </button>
+              ))}
+            </div>
 
-                          return (
-                            <li
-                              key={item.name}
-                              className="text-muteink text-sm md:text-base flex items-start gap-2"
-                            >
-                              <span className="mt-2 h-1 w-1 rounded-full bg-charcoal/40 flex-shrink-0" />
-                              <span>
-                                {item.name}
-                                {distanceLabel}
-                              </span>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </AccordionContent>
-                  </AccordionItem>
-                );
-              })}
-            </Accordion>
+            <div className="rounded-xl border border-black/5 bg-[#fdfaf5] p-6 shadow-sm">
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-3 h-3 rounded-full" style={{ background: CONNECTIVITY[activeTab].color }} />
+                <h3 className="text-xl text-[#1a1a1a] font-serif font-medium">
+                  {CONNECTIVITY[activeTab].category}
+                </h3>
+              </div>
+              <ul className="flex flex-col gap-3">
+                {CONNECTIVITY[activeTab].items.map((item) => (
+                  <li
+                    key={item.name}
+                    className="flex items-center gap-3 p-3.5 rounded-lg bg-white border border-black/5 text-sm text-[#555555] card-hover"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: CONNECTIVITY[activeTab].color }} />
+                    <span className="flex-1 text-[#1a1a1a] font-medium">{item.name}</span>
+                    <span className="ml-auto text-xs text-[#888888] font-semibold shrink-0">
+                      {item.distanceKm.toFixed(1)} km
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
