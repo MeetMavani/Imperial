@@ -122,13 +122,6 @@ const Navbar: React.FC = () => {
                     {link.label}
                   </a>
                 </div>
-
-                {/* Final dot after last mobile item */}
-                {i === NAV_LINKS.length - 1 && (
-                  <div className="flex items-center gap-3 py-3 pl-2">
-                    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#f2521b" }} />
-                  </div>
-                )}
               </React.Fragment>
             );
           })}
