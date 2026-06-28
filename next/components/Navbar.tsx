@@ -1,9 +1,17 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { ASSETS, NAV_LINKS } from "../data/content";
+
+// Three-dot connector using exact logo brand colors via inline style
+const NavSeparator = () => (
+  <span className="flex items-center gap-[5px] shrink-0" aria-hidden>
+    <span className="w-[5px] h-[5px] rounded-full" style={{ background: '#0dafbe' }} />
+    <span className="w-[5px] h-[5px] rounded-full" style={{ background: '#fbc707' }} />
+    <span className="w-[5px] h-[5px] rounded-full" style={{ background: '#f2521b' }} />
+  </span>
+);
 
 const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -33,59 +41,62 @@ const Navbar: React.FC = () => {
       data-testid="navbar-root"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-cream/95 backdrop-blur-md shadow-subtle py-3"
-          : "bg-cream/70 backdrop-blur-sm border-b border-charcoal/5 py-5"
+          ? "bg-cream/97 backdrop-blur-md shadow-subtle py-2"
+          : "bg-cream/75 backdrop-blur-sm border-b border-charcoal/6 py-3"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between">
+
+        {/* ── Logo ── */}
         <a
           href="#hero"
           onClick={(e) => handleNavClick(e, "#hero")}
           data-testid="navbar-logo"
-          className="flex items-center gap-3 group"
+          className="flex items-center group shrink-0"
         >
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src={ASSETS.logo}
             alt="Aarambh Imperial"
-            width={120}
-            height={48}
-            loading="eager"
-            className="h-14 w-auto md:h-16 transition-transform duration-500 group-hover:rotate-3"
+            style={{ height: '72px', width: 'auto' }}
+            className="transition-transform duration-500 group-hover:scale-[1.03] object-contain"
           />
-          <div className="flex flex-col leading-none">
-            <span
-              className="font-serif text-xl md:text-2xl tracking-tight text-charcoal"
-            >
-              Aarambh Imperial
-            </span>
-            <span
-              className="text-[10px] uppercase tracking-widestx mt-0.5 text-muteink"
-            >
-              by Aarambh Group
-            </span>
-          </div>
         </a>
 
-        <nav className="hidden lg:flex items-center gap-9">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              data-testid={`navbar-link-${link.label.toLowerCase()}`}
-              onClick={(e) => handleNavClick(e, link.href)}
-              className="text-sm tracking-wide text-charcoal transition-colors duration-300 hover:text-teal"
-            >
-              {link.label}
-            </a>
+        {/* ── Desktop nav ── */}
+        <nav className="hidden lg:flex items-center">
+          {NAV_LINKS.map((link, i) => (
+            <React.Fragment key={link.href}>
+              <a
+                href={link.href}
+                data-testid={`navbar-link-${link.label.toLowerCase()}`}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="relative text-[13px] font-medium tracking-wide text-charcoal/80
+                  transition-colors duration-300 hover:text-teal px-3
+                  after:absolute after:bottom-[-3px] after:left-3 after:right-3
+                  after:h-px after:bg-teal after:scale-x-0 after:origin-left
+                  after:transition-transform after:duration-300
+                  hover:after:scale-x-100"
+              >
+                {link.label}
+              </a>
+              {/* Three-dot separator between items, not after last */}
+              {i < NAV_LINKS.length - 1 && <NavSeparator />}
+            </React.Fragment>
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        {/* ── Actions ── */}
+        <div className="flex items-center gap-3 shrink-0">
           <a
             href="#contact"
             onClick={(e) => handleNavClick(e, "#contact")}
             data-testid="navbar-enquire-btn"
-            className="hidden md:inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-teal text-white text-sm font-medium tracking-wide hover:bg-teal-dark transition-all duration-300 hover:shadow-lift"
+            className="hidden md:inline-flex items-center justify-center
+              px-5 py-2 rounded-full
+              border border-teal text-teal text-[13px] font-medium tracking-wide
+              hover:bg-teal hover:text-white
+              transition-all duration-300 hover:shadow-lift"
           >
             Enquire Now
           </a>
@@ -100,29 +111,38 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* ── Mobile menu ── */}
       <div
         className={`lg:hidden overflow-hidden transition-[max-height] duration-500 ease-in-out ${
           open ? "max-h-[600px]" : "max-h-0"
         }`}
       >
-        <div className="bg-cream/98 backdrop-blur-md border-t border-charcoal/10 px-6 py-6 flex flex-col gap-5">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              data-testid={`mobile-link-${link.label.toLowerCase()}`}
-              onClick={(e) => handleNavClick(e, link.href)}
-              className="text-charcoal text-base tracking-wide"
-            >
-              {link.label}
-            </a>
+        <div className="bg-cream/98 backdrop-blur-md border-t border-charcoal/10 px-6 py-6 flex flex-col gap-1">
+          {NAV_LINKS.map((link, i) => (
+            <React.Fragment key={link.href}>
+              <a
+                href={link.href}
+                data-testid={`mobile-link-${link.label.toLowerCase()}`}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="text-charcoal text-base tracking-wide py-3 border-b border-charcoal/6 hover:text-teal transition-colors"
+              >
+                {link.label}
+              </a>
+              {/* Dot separator between items on mobile */}
+              {i < NAV_LINKS.length - 1 && (
+                <div className="flex items-center gap-1.5 px-1 py-1">
+                  <span className="w-[5px] h-[5px] rounded-full" style={{ background: '#0dafbe' }} />
+                  <span className="w-[5px] h-[5px] rounded-full" style={{ background: '#fbc707' }} />
+                  <span className="w-[5px] h-[5px] rounded-full" style={{ background: '#f2521b' }} />
+                </div>
+              )}
+            </React.Fragment>
           ))}
           <a
             href="#contact"
             onClick={(e) => handleNavClick(e, "#contact")}
             data-testid="mobile-enquire-btn"
-            className="inline-flex items-center justify-center w-full px-6 py-3 rounded-full bg-teal text-white text-sm font-medium"
+            className="mt-4 inline-flex items-center justify-center w-full px-6 py-3 rounded-full bg-teal text-white text-sm font-medium"
           >
             Enquire Now
           </a>

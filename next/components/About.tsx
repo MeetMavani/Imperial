@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useRef } from "react";
+import Image from "next/image";
 import { useReveal } from "../hooks/useReveal";
 import { ASSETS } from "../data/content";
-import { Eye, Target } from "lucide-react";
 
 const About: React.FC = () => {
   const ref = useRef<HTMLElement>(null);
@@ -73,143 +73,122 @@ const About: React.FC = () => {
           </div>
         </div>
 
-        <div className="mt-20 lg:mt-28">
-          <div
-            data-reveal
-            className="relative overflow-hidden bg-white border border-black/5 shadow-subtle"
-          >
-            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-teal via-gold to-ember" />
+        {/* Mission & Vision — branded background images with overlaid content */}
+        <div className="mt-20 lg:mt-28" data-reveal>
+          {/* Wrapper: relative container so background image + content layer correctly */}
+          <div className="relative overflow-hidden rounded-sm">
 
-            <div className="relative z-10 p-7 md:p-10 lg:p-12">
-              <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-14 items-start">
-                <div>
-                  <span className="text-xs uppercase tracking-widestx text-teal font-medium">
-                    Our Mission & Vision
+            {/* ── Background images ── */}
+            {/* Mobile background (shown on < md) */}
+            <div className="relative w-full md:hidden" style={{ paddingBottom: '210%' }}>
+              <Image
+                src="/assets/mission-vision/mission-vision-mobile.png"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover object-center"
+                priority
+                aria-hidden
+              />
+            </div>
+
+            {/* Desktop background (shown on ≥ md) */}
+            <div className="relative w-full hidden md:block" style={{ paddingBottom: '56.25%' }}>
+              <Image
+                src="/assets/mission-vision/mission-vision-desktop.png"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover object-center"
+                priority
+                aria-hidden
+              />
+            </div>
+
+            {/* ── Content overlay ── */}
+            <div className="absolute inset-0 flex flex-col justify-center
+              px-7 py-10
+              md:px-16 md:py-14
+              lg:px-24
+            ">
+
+              {/* ── Header: centered on desktop, left on mobile ── */}
+              <div className="text-charcoal md:text-center">
+                <span className="text-[10px] font-semibold uppercase tracking-widestx text-teal">
+                  Our Mission &amp; Vision
+                </span>
+                <h3 className="mt-4 font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] leading-[1.04] tracking-tight">
+                  Built with purpose,
+                  <span className="block italic text-gold-dark">
+                    delivered with care.
                   </span>
-                  <h3 className="font-serif text-charcoal text-4xl md:text-5xl leading-[1.04] tracking-tight mt-4">
-                    A promise shaped by
-                    <span className="italic text-gold-dark"> quality</span>,
-                    safety and trust.
-                  </h3>
-                  <p className="text-muteink text-base md:text-lg leading-relaxed mt-6">
-                    We see every project as a responsibility: to build with
-                    discipline, anticipate client needs, and keep improving the
-                    way our teams deliver.
-                  </p>
-
-                  <div className="mt-8 grid grid-cols-3 border border-black/5 bg-cream">
-                    {["Quality", "Safety", "Integrity"].map((item, index) => (
-                      <div
-                        key={item}
-                        className={`px-3 py-4 text-center ${index > 0 ? "border-l border-black/5" : ""
-                          }`}
-                      >
-                        <div
-                          className="mx-auto mb-2 h-2 w-2 rounded-full"
-                          style={{
-                            background:
-                              index === 0
-                                ? "#fbc707"
-                                : index === 1
-                                  ? "#0dafbe"
-                                  : "#f2521b",
-                          }}
-                        />
-                        <span className="text-[10px] uppercase tracking-widestx text-charcoal font-semibold">
-                          {item}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-5">
-                  {[
-                    {
-                      eyebrow: "Mission",
-                      title: "Quality beyond expectation",
-                      copy:
-                        "To consistently deliver exceptional quality that exceeds client expectations on every project, treating each undertaking with the same importance as the people who entrust it to us.",
-                      icon: Target,
-                      color: "gold",
-                      number: "01",
-                    },
-                    {
-                      eyebrow: "Vision",
-                      title: "Safer, smarter, more sustainable",
-                      copy:
-                        "To deliver projects to the highest standards of health and safety while growing through superior management, professionalism, integrity, and innovation.",
-                      icon: Eye,
-                      color: "teal",
-                      number: "02",
-                    },
-                  ].map((block) => {
-                    const Icon = block.icon;
-                    const accent =
-                      block.color === "gold" ? "text-gold-dark" : "text-teal";
-                    const bg =
-                      block.color === "gold" ? "bg-gold/10" : "bg-teal/10";
-                    const border =
-                      block.color === "gold" ? "border-gold/40" : "border-teal/35";
-
-                    return (
-                      <div
-                        key={block.eyebrow}
-                        className={`relative overflow-hidden border ${border} bg-cream/60 p-6 md:p-7`}
-                      >
-                        <div className="absolute right-5 top-4 font-serif text-7xl leading-none text-charcoal/[0.04] select-none pointer-events-none">
-                          {block.number}
-                        </div>
-                        <div className="relative z-10">
-                          <div className={`h-11 w-11 rounded-lg ${bg} ${accent} flex items-center justify-center`}>
-                            <Icon size={22} />
-                          </div>
-                          <span className={`mt-5 block text-[10px] uppercase tracking-widestx font-semibold ${accent}`}>
-                            {block.eyebrow}
-                          </span>
-                          <h4 className="font-serif text-charcoal text-2xl md:text-3xl leading-tight tracking-tight mt-2">
-                            {block.title}
-                          </h4>
-                          <p className="text-muteink text-sm md:text-base leading-relaxed mt-4">
-                            {block.copy}
-                          </p>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
+                </h3>
+                <p className="mt-5 text-[14px] sm:text-[15px] leading-relaxed text-muteink
+                  md:mx-auto md:max-w-xl lg:max-w-2xl">
+                  Every line of planning, safety, and execution is measured
+                  against one promise: lasting value for the people who trust
+                  us to build.
+                </p>
               </div>
 
-              <div
-                data-reveal
-                data-reveal-delay="0.12"
-                className="mt-8 border-t border-black/10 pt-6"
-              >
-                <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-                  <p className="max-w-2xl text-muteink text-sm md:text-base leading-relaxed">
-                    From planning to possession, our approach stays anchored in
-                    quality, health and safety, proactive delivery, and
-                    continuously improving sustainability commitments.
-                  </p>
+              {/* ── Items: stacked on mobile, side-by-side on desktop ── */}
+              <div className="mt-8 border-t border-charcoal/15
+                md:grid md:grid-cols-2 md:gap-0
+              ">
 
-                  <div className="flex flex-wrap gap-x-5 gap-y-3">
-                    {[
-                      { label: "Quality", color: "bg-gold" },
-                      { label: "Safety", color: "bg-teal" },
-                      { label: "Integrity", color: "bg-ember" },
-                      { label: "Sustainability", color: "bg-teal" },
-                    ].map((item) => (
-                      <div key={item.label} className="flex items-center gap-2">
-                        <span className={`h-2 w-2 rounded-full ${item.color}`} />
-                        <span className="text-[10px] uppercase tracking-widestx text-charcoal font-semibold">
-                          {item.label}
-                        </span>
-                      </div>
-                    ))}
+                {/* 01 — Mission */}
+                <div className="flex gap-5 pt-7 pb-7 border-b border-charcoal/10
+                  md:pb-0 md:border-b-0 md:border-r md:pr-10 lg:pr-14
+                ">
+                  <span
+                    className="font-serif text-4xl sm:text-5xl leading-none shrink-0 w-12 sm:w-[3.5rem]"
+                    style={{ color: '#d9a800', opacity: 0.75 }}
+                  >
+                    01
+                  </span>
+                  <div>
+                    <span className="text-[9px] sm:text-[10px] font-semibold uppercase tracking-widestx text-gold-dark">
+                      Mission
+                    </span>
+                    <h4 className="mt-1.5 font-serif text-xl sm:text-2xl leading-tight text-charcoal">
+                      Quality beyond expectation
+                    </h4>
+                    <p className="mt-2.5 text-[13px] sm:text-sm leading-relaxed text-muteink">
+                      To consistently deliver exceptional quality on every
+                      project, treating each undertaking with the same
+                      importance as the people who entrust it to us.
+                    </p>
                   </div>
                 </div>
+
+                {/* 02 — Vision */}
+                <div className="flex gap-5 pt-7
+                  md:pl-10 lg:pl-14
+                ">
+                  <span
+                    className="font-serif text-4xl sm:text-5xl leading-none shrink-0 w-12 sm:w-[3.5rem]"
+                    style={{ color: '#0dafbe', opacity: 0.8 }}
+                  >
+                    02
+                  </span>
+                  <div>
+                    <span className="text-[9px] sm:text-[10px] font-semibold uppercase tracking-widestx text-teal">
+                      Vision
+                    </span>
+                    <h4 className="mt-1.5 font-serif text-xl sm:text-2xl leading-tight text-charcoal">
+                      Safer, smarter, more sustainable
+                    </h4>
+                    <p className="mt-2.5 text-[13px] sm:text-sm leading-relaxed text-muteink">
+                      To deliver to the highest standards of health and
+                      safety, while growing through management excellence,
+                      integrity, and thoughtful innovation.
+                    </p>
+                  </div>
+                </div>
+
               </div>
             </div>
+
           </div>
         </div>
 
