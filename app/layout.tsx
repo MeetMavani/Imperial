@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   keywords:
     "Aarambh Imperial, Mulund West flats, 2BHK 3BHK Mumbai, premium residences Mulund, Aarambh builder Mumbai",
   icons: {
-    icon: "/assets/favicon.ico",
+    icon: "/assets/favicon-150x150.png",
   },
   openGraph: {
     title: "Aarambh Imperial — Premium Residences in Mulund West, Mumbai",

@@ -10,7 +10,7 @@ export interface AssetConfig {
 
 export const ASSETS: AssetConfig = {
   logo: "/assets/logo-img.png",
-  heroRender: "/assets/hero-desktop-4.png",
+  heroRender: "/assets/hero-desktop.png",
   heroRenderMobile: "/assets/hero-mobile.png",
   heroVideo: "/assets/loader-sketch.mp4",
   aboutSketch: "/assets/building-frame.png",
@@ -77,8 +77,7 @@ export const FLOOR_TABS: FloorTab[] = [
     title: "The Two Bedroom Residence",
     description:
       "Thoughtfully proportioned interiors with abundant natural light, a flowing living-dining and considered storage — designed for a refined urban life.",
-    image:
-      "https://images.unsplash.com/photo-1721244654394-36a7bc2da288?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHw0fHxhcmNoaXRlY3R1cmFsJTIwZmxvb3IlMjBwbGFuJTIwYmx1ZXByaW50fGVufDB8fHx8MTc4MjQwODAwMnww&ixlib=rb-4.1.0&q=85",
+    image: "/assets/plans/floor-plan.webp",
     meta: [
       { label: "Carpet Area", value: "701 – 740 sq.ft." },
       { label: "Configuration", value: "2 BHK" },
@@ -95,8 +94,7 @@ export const FLOOR_TABS: FloorTab[] = [
     title: "The Three Bedroom Residence",
     description:
       "Expansive, light-filled homes with generous balconies and a master suite — crafted for families that value space, privacy and elegance.",
-    image:
-      "https://images.unsplash.com/photo-1721244653721-bc681b2dfd27?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwzfHxhcmNoaXRlY3R1cmFsJTIwZmxvb3IlMjBwbGFuJTIwYmx1ZXByaW50fGVufDB8fHx8MTc4MjQwODAwMnww&ixlib=rb-4.1.0&q=85",
+    image: "/assets/plans/floor-plan.webp",
     meta: [
       { label: "Carpet Area", value: "892 – 1,189 sq.ft." },
       { label: "Configuration", value: "Compact 3 BHK / 3 BHK" },
@@ -113,8 +111,7 @@ export const FLOOR_TABS: FloorTab[] = [
     title: "Typical Floor Layout",
     description:
       "A considered floor layout — corner apartments, cross-ventilation, and column-free living rooms that flow into private decks overlooking Mulund.",
-    image:
-      "https://images.pexels.com/photos/4458210/pexels-photo-4458210.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    image: "/assets/plans/floor-plan.webp",
     meta: [
       { label: "Apartments / Floor", value: "4" },
       { label: "Towers", value: "1 Iconic Tower" },
@@ -130,16 +127,17 @@ export const FLOOR_TABS: FloorTab[] = [
     kind: "gallery",
     title: "Multi-Level Podium Parking",
     description:
-      "Five-level secure podium parking with dedicated bays for every residence, EV-ready charging points and intuitive wayfinding throughout.",
+      "Multi-level secure podium parking with dedicated bays for every residence, EV-ready charging points and intuitive wayfinding throughout.",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1721244654392-9c912a6eb236?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwyfHxhcmNoaXRlY3R1cmFsJTIwZmxvb3IlMjBwbGFuJTIwYmx1ZXByaW50fGVufDB8fHx8MTc4MjQwODAwMnww&ixlib=rb-4.1.0&q=85",
+        url: "/assets/plans/podium.webp",
         label: "Podium Level 1",
       },
       {
-        url: "https://images.pexels.com/photos/4458205/pexels-photo-4458205.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        url: "/assets/plans/parking.webp",
         label: "Podium Level 2",
       },
+      /*
       {
         url: "https://images.unsplash.com/photo-1545179605-1296651e9d43?auto=format&fit=crop&w=900&q=70",
         label: "Podium Level 3",
@@ -152,6 +150,7 @@ export const FLOOR_TABS: FloorTab[] = [
         url: "https://images.unsplash.com/photo-1590674899484-d5640e854abe?auto=format&fit=crop&w=900&q=70",
         label: "Podium Level 5",
       },
+      */
     ],
   },
 ];
@@ -376,6 +375,6 @@ export const CONTACT: ContactConfig = {
   email: "aarambhrealty09@gmail.com",
   address: "V.P. Road & Kasturba Rd, Mulund West, Mumbai 400080",
   whatsapp:
-    "https://wa.me/919967279772?text=Hi%2C%20I%27m%20interested%20in%20Aarambh%20Imperial",
+    "https://wa.me/919967279772?text=Hello%2C%20I%20visited%20your%20website%20and%20I%27m%20interested%20in%20exploring%20your%20real%20estate%20offerings.%20I%20would%20appreciate%20it%20if%20you%20could%20share%20the%20project%20details%2C%20pricing%2C%20floor%20plans%2C%20and%20available%20inventory.%20Please%20let%20me%20know%20a%20convenient%20time%20to%20discuss%20further.%20Thank%20you.",
   rera: "RERA Reg. No. : -",
 };

@@ -15,7 +15,7 @@ import WhatsAppFloat from '@/next/components/WhatsAppFloat'
 // ─── SITE LOADER TOGGLE ──────────────────────────────────────────────────────
 // Set to `true` to show the cinematic intro video on page load.
 // Set to `false` to skip it entirely.
-const ENABLE_SITE_LOADER = false
+const ENABLE_SITE_LOADER = true
 
 // ─── TYPES & CONSTANTS ───────────────────────────────────────────────────────
 

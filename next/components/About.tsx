@@ -231,7 +231,7 @@ const About: React.FC = () => {
                 src="/assets/mission-vision/mission-vision-mobile.png"
                 alt=""
                 fill
-                sizes="100vw"
+                sizes="(max-width: 768px) 100vw, 768px"
                 className="object-cover object-center"
                 priority
                 aria-hidden
@@ -244,7 +244,7 @@ const About: React.FC = () => {
                 src="/assets/mission-vision/mission-vision-desktop.png"
                 alt=""
                 fill
-                sizes="100vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
                 className="object-cover object-center border"
                 priority
                 aria-hidden
