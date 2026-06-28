@@ -57,55 +57,57 @@ const Hero: React.FC<HeroProps> = ({ loaded = true }) => {
           <img
             src={ASSETS.heroRender}
             alt="Aarambh Imperial exterior render"
-            className="w-full h-auto block"
+            className="w-full h-screen  block"
           />
           {/* Gradients overlaid on the img for text legibility */}
-          {/* <div className="absolute inset-0 bg-gradient-to-r from-cream/95 via-cream/60 to-transparent" /> */}
+          {/* <div className="absolute inset-0 bg-gradient-to-r from-cream/70 via-cream/5 to-transparent" /> */}
           {/* <div className="absolute inset-0 bg-gradient-to-t from-cream/30 via-transparent to-transparent" /> */}
           {/* Subtle inner border */}
           <div className="absolute inset-0 rounded-[inherit] border border-white/30 pointer-events-none z-20" />
         </div>
 
         {/* Text — absolutely positioned over the image card */}
-        <div className="absolute inset-0 z-10 flex flex-col justify-between py-12 lg:py-16 xl:py-20 px-6 md:px-8 lg:px-12 xl:px-16">
+        <div className="absolute inset-0 z-10 flex flex-col justify-center px-6 md:px-8 lg:px-12 xl:px-16">
           
-          {/* TOP: Logo replacement for header */}
-          <div data-hero-anim className="opacity-0 mt-8 lg:mt-12">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/assets/hero-logo.webp"
-              alt="Aarambh Imperial"
-              className="h-24 lg:h-28 xl:h-32 w-auto object-contain block"
-            />
-          </div>
-
-          {/* BOTTOM: Content block (BHK, Location, Tagline) */}
-          <div className="max-w-[480px] xl:max-w-[560px] mb-6 lg:mb-8">
-            {/* BHK & Location Details */}
-            <div data-hero-anim className="space-y-1 opacity-0">
-              <div className="font-serif text-lg lg:text-xl xl:text-2xl text-teal">
-                2 &amp; 3 BHK Premium Apartments
-              </div>
-              <div className="text-xs lg:text-sm xl:text-base text-gold-dark font-medium tracking-wide">
-                V.P. Road, Mulund West
-              </div>
+          <div className="max-w-[480px] xl:max-w-[560px] flex flex-col gap-6 lg:gap-8">
+            {/* Logo */}
+            <div data-hero-anim className="opacity-0">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/assets/hero-logo.webp"
+                alt="Aarambh Imperial"
+                className="h-24 lg:h-28 xl:h-32 w-auto object-contain block"
+              />
             </div>
 
-            <div
-              data-hero-anim
-              className="my-5 flex items-center gap-4 opacity-0"
-            >
-              <div className="h-px w-10 bg-charcoal/20" />
-              <span className="text-sm text-gold-dark">◊</span>
-              <div className="h-px w-10 bg-charcoal/20" />
-            </div>
+            {/* Content block (BHK, Location, Tagline) */}
+            <div>
+              {/* BHK & Location Details */}
+              <div data-hero-anim className="space-y-1 opacity-0">
+                <div className="font-serif text-lg lg:text-xl xl:text-2xl text-teal">
+                  2 &amp; 3 BHK Premium Apartments
+                </div>
+                <div className="text-xs lg:text-sm xl:text-base text-gold-dark font-medium tracking-wide">
+                  V.P. Road, Mulund West
+                </div>
+              </div>
 
-            <p
-              data-hero-anim
-              className="text-sm lg:text-base leading-relaxed text-muteink opacity-0 max-w-[340px]"
-            >
-              Aarambh Imperial is crafted for those who desire more from life.
-            </p>
+              <div
+                data-hero-anim
+                className="my-5 flex items-center gap-4 opacity-0"
+              >
+                <div className="h-px w-10 bg-charcoal/20" />
+                <span className="text-sm text-gold-dark">◊</span>
+                <div className="h-px w-10 bg-charcoal/20" />
+              </div>
+
+              <p
+                data-hero-anim
+                className="text-sm lg:text-base leading-relaxed text-muteink opacity-0 max-w-[340px]"
+              >
+                Aarambh Imperial is crafted for those who desire more from life.
+              </p>
+            </div>
           </div>
 
         </div>
@@ -134,7 +136,7 @@ const Hero: React.FC<HeroProps> = ({ loaded = true }) => {
             <img
               src="/assets/hero-logo.webp"
               alt="Aarambh Imperial"
-              className="h-19 sm:h-16 w-auto object-contain block"
+              className="h-15 sm:h-12 w-auto object-contain block"
             />
           </div>
         </div>
