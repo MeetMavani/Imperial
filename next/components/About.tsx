@@ -259,7 +259,7 @@ const About: React.FC = () => {
             ">
 
               {/* ── Header: centered on desktop, left on mobile ── */}
-              <div className="text-charcoal md:text-center">
+              <div className="text-charcoal md:text-center pr-[28%] md:pr-0">
                 <span className="text-[10px] font-semibold uppercase tracking-widestx text-teal">
                   Our Mission &amp; Vision
                 </span>
