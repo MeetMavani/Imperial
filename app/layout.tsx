@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     title: "Aarambh Imperial — Premium Residences in Mulund West, Mumbai",
     description:
       "Premium 2 BHK and 3 BHK residences in Mulund West, Mumbai by Aarambh Group.",
-    url: "https://arambhimperial.com",
+    url: "https://aarambhimperial.com",
     siteName: "Aarambh Imperial",
     type: "website",
   },
