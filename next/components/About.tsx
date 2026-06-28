@@ -226,7 +226,7 @@ const About: React.FC = () => {
 
             {/* ── Background images ── */}
             {/* Mobile background (shown on < md) */}
-            <div className="relative w-full md:hidden" style={{ paddingBottom: '215%' }}>
+            <div className="absolute inset-0 md:hidden z-0">
               <Image
                 src="/assets/mission-vision/mission-vision-mobile.png"
                 alt=""
@@ -239,7 +239,7 @@ const About: React.FC = () => {
             </div>
 
             {/* Desktop background (shown on ≥ md) */}
-            <div className="relative w-full hidden md:block" style={{ paddingBottom: '56.25%' }}>
+            <div className="relative w-full hidden md:block z-0" style={{ paddingBottom: '56.25%' }}>
               <Image
                 src="/assets/mission-vision/mission-vision-desktop.png"
                 alt=""
@@ -252,8 +252,8 @@ const About: React.FC = () => {
             </div>
 
             {/* ── Content overlay ── */}
-            <div className="absolute inset-0 flex flex-col justify-center
-              px-6 py-6
+            <div className="relative md:absolute md:inset-0 flex flex-col justify-center z-10
+              px-6 py-12
               md:px-16 md:py-14
               lg:px-24
             ">
