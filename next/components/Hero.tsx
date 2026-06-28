@@ -126,7 +126,7 @@ const Hero: React.FC<HeroProps> = ({ loaded = true }) => {
         </div>
 
         {/* ── TOP overlay: logo left-aligned ── */}
-        <div className="absolute top-0 inset-x-0 px-6 pt-24 sm:pt-28">
+        <div className="absolute top-0 inset-x-0 px-6 pt-20 sm:pt-24">
 
           {/* Logo replacement for header */}
           <div data-hero-anim className="mt-4 opacity-0">
@@ -140,10 +140,10 @@ const Hero: React.FC<HeroProps> = ({ loaded = true }) => {
         </div>
 
         {/* ── BOTTOM overlay: tagline over blue water ── */}
-        <div className="absolute bottom-0 inset-x-0 px-6 pb-10 sm:pb-14 text-center">
+        <div className="absolute bottom-0 inset-x-0 px-6 pb-6 sm:pb-10 text-center">
           
           {/* BHK & Location Details in a highly-readable glassmorphic card */}
-          <div className="text-left mb-5">
+          <div className="text-left mb-3">
             <div 
               data-hero-anim 
               className="inline-block bg-black/10 backdrop-blur-md border border-white/10 rounded-xl px-4 py-3 opacity-0"
@@ -159,7 +159,7 @@ const Hero: React.FC<HeroProps> = ({ loaded = true }) => {
 
           <div
             data-hero-anim
-            className="flex items-center justify-center gap-3 mb-4 opacity-0"
+            className="flex items-center justify-center gap-3 mb-2 opacity-0"
           >
             <div className="h-px w-8 bg-white/100" />
             <span className="text-sm text-white/100">◊</span>
