@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     siteName: "Aarambh Imperial",
     images: [
       {
-        url: "https://www.aarambhimperial.com/assets/logo-mark.png",
+        url: "https://www.aarambhimperial.com/assets/logo.webp",
         width: 1200,
         height: 1200,
         alt: "Aarambh Imperial Logo",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     title: "Aarambh Imperial — Premium Residences in Mulund West, Mumbai",
     description:
       "Discover Aarambh Imperial — premium 2 BHK and 3 BHK residences in Mulund West, Mumbai.",
-    images: ["https://www.aarambhimperial.com/assets/logo-mark.png"],
+    images: ["https://www.aarambhimperial.com/assets/logo.webp"],
   },
 };
 
