@@ -29,7 +29,22 @@ export const metadata: Metadata = {
       "Premium 2 BHK and 3 BHK residences in Mulund West, Mumbai by Aarambh Group.",
     url: "https://aarambhimperial.com",
     siteName: "Aarambh Imperial",
+    images: [
+      {
+        url: "https://www.aarambhimperial.com/assets/logo-mark.png",
+        width: 1200,
+        height: 1200,
+        alt: "Aarambh Imperial Logo",
+      },
+    ],
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Aarambh Imperial — Premium Residences in Mulund West, Mumbai",
+    description:
+      "Discover Aarambh Imperial — premium 2 BHK and 3 BHK residences in Mulund West, Mumbai.",
+    images: ["https://www.aarambhimperial.com/assets/logo-mark.png"],
   },
 };
 
