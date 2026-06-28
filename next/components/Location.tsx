@@ -92,9 +92,9 @@ const Location: React.FC = () => {
           </h2>
           <p
             data-reveal
-            className="text-muteink text-base md:text-lg leading-relaxed mt-5 flex items-center justify-center gap-2"
+            className="text-muteink text-base md:text-lg leading-relaxed mt-5 text-center"
           >
-            <MapPin size={16} className="text-ember" />
+            <MapPin size={18} className="text-ember inline-block mr-1.5 align-middle -mt-0.5" />
             {CONTACT.address}
           </p>
         </div>
