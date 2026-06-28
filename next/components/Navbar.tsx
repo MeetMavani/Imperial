@@ -4,14 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { ASSETS, NAV_LINKS } from "../data/content";
 
-// Three-dot connector using exact logo brand colors via inline style
-const NavSeparator = () => (
-  <span className="flex items-center gap-[5px] shrink-0" aria-hidden>
-    <span className="w-[5px] h-[5px] rounded-full" style={{ background: '#0dafbe' }} />
-    <span className="w-[5px] h-[5px] rounded-full" style={{ background: '#fbc707' }} />
-    <span className="w-[5px] h-[5px] rounded-full" style={{ background: '#f2521b' }} />
-  </span>
-);
+const DOT_COLORS = ["#0dafbe", "#fbc707", "#f2521b"];
 
 const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -58,32 +51,40 @@ const Navbar: React.FC = () => {
           <img
             src={ASSETS.logo}
             alt="Aarambh Imperial"
-            style={{ height: '72px', width: 'auto' }}
-            className="transition-transform duration-500 group-hover:scale-[1.03] object-contain"
+            className="h-[60px] sm:h-[72px] md:h-[80px] w-auto transition-transform duration-500 group-hover:scale-[1.03] object-contain"
           />
         </a>
 
         {/* ── Desktop nav ── */}
-        <nav className="hidden lg:flex items-center">
-          {NAV_LINKS.map((link, i) => (
-            <React.Fragment key={link.href}>
-              <a
-                href={link.href}
-                data-testid={`navbar-link-${link.label.toLowerCase()}`}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className="relative text-[13px] font-medium tracking-wide text-charcoal/80
-                  transition-colors duration-300 hover:text-teal px-3
-                  after:absolute after:bottom-[-3px] after:left-3 after:right-3
-                  after:h-px after:bg-teal after:scale-x-0 after:origin-left
-                  after:transition-transform after:duration-300
-                  hover:after:scale-x-100"
-              >
-                {link.label}
-              </a>
-              {/* Three-dot separator between items, not after last */}
-              {i < NAV_LINKS.length - 1 && <NavSeparator />}
-            </React.Fragment>
-          ))}
+        <nav className="hidden lg:flex items-center gap-1">
+          {NAV_LINKS.map((link, i) => {
+            const preDotColor = DOT_COLORS[i % DOT_COLORS.length];
+            return (
+              <React.Fragment key={link.href}>
+                {/* Dot before item */}
+                <span className="w-1.5 h-1.5 rounded-full shrink-0 mx-1.5" style={{ background: preDotColor }} aria-hidden />
+                
+                <a
+                  href={link.href}
+                  data-testid={`navbar-link-${link.label.toLowerCase()}`}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="relative text-[15px] font-semibold tracking-wide text-charcoal
+                    transition-colors duration-300 hover:text-teal px-1.5 py-1
+                    after:absolute after:bottom-[-2px] after:left-1.5 after:right-1.5
+                    after:h-[2px] after:bg-teal after:scale-x-0 after:origin-left
+                    after:transition-transform after:duration-300
+                    hover:after:scale-x-100"
+                >
+                  {link.label}
+                </a>
+
+                {/* Final dot after last item */}
+                {i === NAV_LINKS.length - 1 && (
+                  <span className="w-1.5 h-1.5 rounded-full shrink-0 mx-1.5" style={{ background: "#f2521b" }} aria-hidden />
+                )}
+              </React.Fragment>
+            );
+          })}
         </nav>
 
         {/* ── Actions ── */}
@@ -117,27 +118,33 @@ const Navbar: React.FC = () => {
           open ? "max-h-[600px]" : "max-h-0"
         }`}
       >
-        <div className="bg-cream/98 backdrop-blur-md border-t border-charcoal/10 px-6 py-6 flex flex-col gap-1">
-          {NAV_LINKS.map((link, i) => (
-            <React.Fragment key={link.href}>
-              <a
-                href={link.href}
-                data-testid={`mobile-link-${link.label.toLowerCase()}`}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className="text-charcoal text-base tracking-wide py-3 border-b border-charcoal/6 hover:text-teal transition-colors"
-              >
-                {link.label}
-              </a>
-              {/* Dot separator between items on mobile */}
-              {i < NAV_LINKS.length - 1 && (
-                <div className="flex items-center gap-1.5 px-1 py-1">
-                  <span className="w-[5px] h-[5px] rounded-full" style={{ background: '#0dafbe' }} />
-                  <span className="w-[5px] h-[5px] rounded-full" style={{ background: '#fbc707' }} />
-                  <span className="w-[5px] h-[5px] rounded-full" style={{ background: '#f2521b' }} />
+        <div className="bg-cream/98 backdrop-blur-md border-t border-charcoal/10 px-6 py-4 flex flex-col gap-0">
+          {NAV_LINKS.map((link, i) => {
+            const preDotColor = DOT_COLORS[i % DOT_COLORS.length];
+            return (
+              <React.Fragment key={link.href}>
+                <div className="flex items-center gap-3 py-3 border-b border-charcoal/6 pl-2">
+                  <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: preDotColor }} />
+                  <a
+                    href={link.href}
+                    data-testid={`mobile-link-${link.label.toLowerCase()}`}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className="text-charcoal text-[17px] font-semibold tracking-wide hover:text-teal transition-colors"
+                  >
+                    {link.label}
+                  </a>
                 </div>
-              )}
-            </React.Fragment>
-          ))}
+
+                {/* Final dot after last mobile item */}
+                {i === NAV_LINKS.length - 1 && (
+                  <div className="flex items-center gap-3 py-3 pl-2">
+                    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#f2521b" }} />
+                    <span className="text-charcoal/45 text-[15px] font-medium tracking-wide">End</span>
+                  </div>
+                )}
+              </React.Fragment>
+            );
+          })}
           <a
             href="#contact"
             onClick={(e) => handleNavClick(e, "#contact")}

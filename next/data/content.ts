@@ -9,7 +9,7 @@ export interface AssetConfig {
 }
 
 export const ASSETS: AssetConfig = {
-  logo: "/assets/logo.webp",
+  logo: "/assets/logo-img.png",
   heroRender: "/assets/hero-desktop-4.png",
   heroRenderMobile: "/assets/hero-mobile.png",
   heroVideo: "/assets/loader-sketch.mp4",
@@ -25,7 +25,7 @@ export interface NavLink {
 
 export const NAV_LINKS: NavLink[] = [
   { label: "Overview", href: "#about" },
-  { label: "Residences", href: "#residences" },
+  { label: "Residences", href: "#floor-plans" },
   { label: "Amenities", href: "#amenities" },
   { label: "Location", href: "#location" },
   { label: "Contact", href: "#contact" },
