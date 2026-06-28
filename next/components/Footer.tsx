@@ -26,7 +26,7 @@ const Footer: React.FC = () => {
           <div className="flex flex-col items-center md:items-start">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={ASSETS.logo}
+              src="/assets/logo.webp"
               alt="Aarambh Imperial Logo"
               className="h-32 w-32 md:h-56 md:w-56 object-contain md:object-left -mt-6"
             />
