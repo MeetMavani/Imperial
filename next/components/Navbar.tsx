@@ -89,18 +89,6 @@ const Navbar: React.FC = () => {
 
         {/* ── Actions ── */}
         <div className="flex items-center gap-3 shrink-0">
-          <a
-            href="#contact"
-            onClick={(e) => handleNavClick(e, "#contact")}
-            data-testid="navbar-enquire-btn"
-            className="hidden md:inline-flex items-center justify-center
-              px-5 py-2 rounded-full
-              border border-teal text-teal text-[13px] font-medium tracking-wide
-              hover:bg-teal hover:text-white
-              transition-all duration-300 hover:shadow-lift"
-          >
-            Enquire Now
-          </a>
           <button
             data-testid="navbar-mobile-toggle"
             onClick={() => setOpen((v) => !v)}
@@ -139,20 +127,11 @@ const Navbar: React.FC = () => {
                 {i === NAV_LINKS.length - 1 && (
                   <div className="flex items-center gap-3 py-3 pl-2">
                     <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#f2521b" }} />
-                    <span className="text-charcoal/45 text-[15px] font-medium tracking-wide">End</span>
                   </div>
                 )}
               </React.Fragment>
             );
           })}
-          <a
-            href="#contact"
-            onClick={(e) => handleNavClick(e, "#contact")}
-            data-testid="mobile-enquire-btn"
-            className="mt-4 inline-flex items-center justify-center w-full px-6 py-3 rounded-full bg-teal text-white text-sm font-medium"
-          >
-            Enquire Now
-          </a>
         </div>
       </div>
     </header>
