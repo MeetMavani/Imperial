@@ -55,11 +55,29 @@ const Hero: React.FC<HeroProps> = ({ loaded = true }) => {
       id="hero"
       ref={wrapRef}
       data-testid="hero-section"
-      className="relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-cream text-charcoal"
+      className="relative min-h-screen overflow-hidden bg-cream text-charcoal py-4 md:py-5 lg:py-6"
     >
       <h1 className="sr-only">Aarambh Imperial premium residences</h1>
 
-      <div data-hero-media className="absolute inset-0 right-0 left-1/2 w-[88vw] -translate-x-1/2 overflow-hidden rounded-[24px] will-change-transform">
+      <div data-hero-media className="
+        absolute
+        top-3
+        bottom-3
+        left-1/2
+        w-[96vw]
+        sm:w-[94vw]
+        lg:w-[92vw]
+        2xl:w-[90vw]
+        max-w-[1700px]
+        max-w-[1680px]
+        -translate-x-1/2
+        overflow-hidden
+        rounded-[22px]
+        sm:rounded-[26px]
+        lg:rounded-[32px]
+        shadow-[0_30px_80px_rgba(0,0,0,0.18)]
+        will-change-transform
+      ">
         {/* Desktop Image */}
         <Image
           src={ASSETS.heroRender}
@@ -90,15 +108,53 @@ const Hero: React.FC<HeroProps> = ({ loaded = true }) => {
         />
 
         {/* Desktop Overlays */}
-        <div className="absolute inset-0 hidden bg-gradient-to-r from-[#fbf8f2]/82 via-[#fbf8f2]/20 to-transparent md:block" />
+        <div className="absolute inset-0 hidden bg-gradient-to-r from-[#fbf8f2]/72 via-[#fbf8f2]/18 to-transparent md:block" />
         <div className="absolute inset-0 hidden bg-gradient-to-t from-[#fbf8f2]/20 via-transparent to-transparent md:block" />
         {/* <div className="absolute inset-x-0 top-0 hidden h-36 bg-gradient-to-b from-[#fbf8f2]/20 to-transparent md:block" /> */}
+      
+        {/* Premium Border */}
+          <div
+            className="
+              absolute
+              inset-0
+              rounded-[inherit]
+              border
+              border-white/35
+              pointer-events-none
+              z-20
+            "
+          />
       </div>
+      
+      <div
+        className="
+          relative
+          z-10
+          mx-auto
+          flex
+          min-h-[calc(100svh-24px)]
+          w-full
+          max-w-[1600px]
+          flex-col
+          px-6
+          md:px-10
+          lg:px-14
+          pt-24
+          md:pt-28
+          pb-10
+        ">
 
-      <div className="relative z-10 mx-auto flex h-full w-full max-w-[1440px] flex-col px-6 pb-24 pt-28 md:px-10 md:pb-7 lg:px-14">
-
-        <div className="flex flex-1 items-end pb-5 md:items-start md:py-4">
-          <div className="w-full max-w-[500px] md:w-[42vw]">
+        <div
+          className="
+            flex
+            flex-1
+            items-end
+            pb-8
+            md:items-center
+            md:pb-0
+          "
+          >
+          <div className="w-full max-w-[500px] xl:max-w-[620px] md:w-[42vw]">
             <div
               data-hero-anim
               className="flex items-center gap-2.5 text-[10px] sm:text-xs uppercase tracking-widestx text-gold-dark font-medium opacity-0 md:justify-start justify-center"
