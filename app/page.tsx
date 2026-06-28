@@ -31,10 +31,15 @@ interface StatItem {
   prefix?: string
 }
 
+interface ConnectivityItem {
+  name: string
+  distanceKm: number
+}
+
 interface ConnectivityCategory {
   category: string
   color: string
-  items: string[]
+  items: ConnectivityItem[]
 }
 
 interface EnquiryForm {
@@ -78,22 +83,43 @@ const CONNECTIVITY: ConnectivityCategory[] = [
   {
     category: 'Transport',
     color: '#0dafbe',
-    items: ['Mulund Railway Station', 'LBS Marg', 'Eastern Express Highway', 'Proposed Metro Station', 'BEST Bus Depot', 'Panch Rasta Junction'],
+    items: [
+      { name: 'Mulund Railway Station', distanceKm: 1.2 },
+      { name: 'LBS Marg', distanceKm: 0.4 },
+      { name: 'Eastern Express Highway', distanceKm: 1.6 },
+      { name: 'Proposed Metro Station', distanceKm: 0.9 },
+      { name: 'BEST Bus Depot', distanceKm: 0.7 },
+      { name: 'Panch Rasta Junction', distanceKm: 1.1 },
+    ],
   },
   {
     category: 'Education',
     color: '#fbc707',
-    items: ['NES International School', 'Billabong High International School', "St. Mary's Convent High School", 'V.G. Vaze College'],
+    items: [
+      { name: 'NES International School', distanceKm: 1.8 },
+      { name: 'Billabong High International School', distanceKm: 2.1 },
+      { name: "St. Mary's Convent High School", distanceKm: 1.4 },
+      { name: 'V.G. Vaze College', distanceKm: 2.3 },
+    ],
   },
   {
     category: 'Health',
     color: '#f2521b',
-    items: ['Fortis Hospital Mulund', 'Jupiter Hospital Thane', 'Apex Hospitals'],
+    items: [
+      { name: 'Fortis Hospital, Mulund', distanceKm: 1.1 },
+      { name: 'Jupiter Hospital, Thane', distanceKm: 3.8 },
+      { name: 'Apex Hospitals', distanceKm: 2.4 },
+    ],
   },
   {
     category: 'Shopping',
     color: '#0dafbe',
-    items: ['D-Mart', 'R Mall', 'Banks'],
+    items: [
+      { name: 'D-Mart', distanceKm: 0.9 },
+      { name: 'R Mall', distanceKm: 2.0 },
+      { name: 'Banks & ATMs', distanceKm: 0.3 },
+      { name: 'Local Markets', distanceKm: 0.6 },
+    ],
   },
 ]
 
@@ -639,11 +665,14 @@ function Location() {
               <ul className="flex flex-col gap-3">
                 {CONNECTIVITY[activeTab].items.map((item) => (
                   <li
-                    key={item}
+                    key={item.name}
                     className="flex items-center gap-3 p-3 rounded-lg bg-white border border-black/5 text-sm text-[#555555] card-hover"
                   >
                     <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: CONNECTIVITY[activeTab].color }} />
-                    {item}
+                    <span className="flex-1">{item.name}</span>
+                    <span className="ml-auto text-xs text-[#888888] font-medium shrink-0">
+                      {item.distanceKm.toFixed(1)} km
+                    </span>
                   </li>
                 ))}
               </ul>

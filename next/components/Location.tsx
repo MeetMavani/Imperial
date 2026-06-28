@@ -118,15 +118,25 @@ const Location: React.FC = () => {
                     </AccordionTrigger>
                     <AccordionContent className="pb-5">
                       <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2 pl-14">
-                        {cat.items.map((item) => (
-                          <li
-                            key={item}
-                            className="text-muteink text-sm md:text-base flex items-start gap-2"
-                          >
-                            <span className="mt-2 h-1 w-1 rounded-full bg-charcoal/40 flex-shrink-0" />
-                            {item}
-                          </li>
-                        ))}
+                        {cat.items.map((item) => {
+                          const distanceLabel =
+                            item.distanceKm !== undefined
+                              ? ` — ${item.distanceKm.toFixed(1)} km`
+                              : "";
+
+                          return (
+                            <li
+                              key={item.name}
+                              className="text-muteink text-sm md:text-base flex items-start gap-2"
+                            >
+                              <span className="mt-2 h-1 w-1 rounded-full bg-charcoal/40 flex-shrink-0" />
+                              <span>
+                                {item.name}
+                                {distanceLabel}
+                              </span>
+                            </li>
+                          );
+                        })}
                       </ul>
                     </AccordionContent>
                   </AccordionItem>

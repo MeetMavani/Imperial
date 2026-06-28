@@ -9,7 +9,7 @@ export interface AssetConfig {
 export const ASSETS: AssetConfig = {
   logo: "/assets/logo.webp",
   heroRender: "/assets/hero-desktop-4.png",
-  heroRenderMobile: "/assets/building-mourning-mobile.jpeg",
+  heroRenderMobile: "/assets/hero-mobile.png",
   heroVideo: "/assets/loader-sketch.mp4",
   aboutSketch: "/assets/building-frame.png",
 };
@@ -33,11 +33,6 @@ export interface Stat {
   accent: "teal" | "gold" | "ember";
 }
 
-export const STATS: Stat[] = [
-  { value: "15+", label: "Years of Experience", accent: "teal" },
-  { value: "50+", label: "Projects Delivered", accent: "gold" },
-  { value: "10,000+", label: "Families Housed", accent: "ember" },
-];
 
 export interface MetaItem {
   label: string;
@@ -284,12 +279,17 @@ export const AMENITY_CATEGORIES: AmenityCategory[] = [
   }
 ];
 
+export interface LocationItem {
+  name: string;
+  distanceKm?: number;
+}
+
 export interface LocationCategory {
   id: string;
   label: string;
   icon: "Train" | "GraduationCap" | "HeartPulse" | "ShoppingBag";
   color: "teal" | "gold" | "ember";
-  items: string[];
+  items: LocationItem[];
 }
 
 // Location categories
@@ -300,24 +300,24 @@ export const LOCATION_CATEGORIES: LocationCategory[] = [
     icon: "Train",
     color: "teal",
     items: [
-      "Mulund Railway Station — 1.2 km",
-      "LBS Marg — 0.4 km",
-      "Eastern Express Highway — 1.6 km",
-      "Proposed Metro Station — 0.9 km",
-      "BEST Bus Depot — 0.7 km",
-      "Panch Rasta Junction — 1.1 km",
+      { name: "Mulund Railway Station", distanceKm: 1.2 },
+      { name: "LBS Marg", distanceKm: 0.4 },
+      { name: "Eastern Express Highway", distanceKm: 1.6 },
+      { name: "Proposed Metro Station", distanceKm: 0.9 },
+      { name: "BEST Bus Depot", distanceKm: 0.7 },
+      { name: "Panch Rasta Junction", distanceKm: 1.1 },
     ],
   },
   {
     id: "education",
     label: "Education",
-    icon: "GraduationCap",
+    icon: "GraduationCap",  
     color: "gold",
     items: [
-      "NES International School",
-      "Billabong High International School",
-      "St. Mary's Convent High School",
-      "V.G. Vaze College",
+      { name: "NES International School", distanceKm: 1.8 },
+      { name: "Billabong High International School", distanceKm: 2.1 },
+      { name: "St. Mary's Convent High School", distanceKm: 1.4 },
+      { name: "V.G. Vaze College", distanceKm: 2.3 },
     ],
   },
   {
@@ -326,9 +326,9 @@ export const LOCATION_CATEGORIES: LocationCategory[] = [
     icon: "HeartPulse",
     color: "ember",
     items: [
-      "Fortis Hospital, Mulund",
-      "Jupiter Hospital, Thane",
-      "Apex Hospitals",
+      { name: "Fortis Hospital, Mulund", distanceKm: 1.1 },
+      { name: "Jupiter Hospital, Thane", distanceKm: 3.8 },
+      { name: "Apex Hospitals", distanceKm: 2.4 },
     ],
   },
   {
@@ -336,7 +336,12 @@ export const LOCATION_CATEGORIES: LocationCategory[] = [
     label: "Shopping",
     icon: "ShoppingBag",
     color: "teal",
-    items: ["D-Mart", "R Mall", "Banks & ATMs", "Local Markets"],
+    items: [
+      { name: "D-Mart", distanceKm: 0.9 },
+      { name: "R Mall", distanceKm: 2.0 },
+      { name: "Banks & ATMs", distanceKm: 0.3 },
+      { name: "Local Markets", distanceKm: 0.6 },
+    ],
   },
 ];
 
