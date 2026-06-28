@@ -9,7 +9,7 @@ export interface AssetConfig {
 }
 
 export const ASSETS: AssetConfig = {
-  logo: "/assets/logo-img.png",
+  logo: "/assets/logo.webp",
   heroRender: "/assets/hero-desktop-4.png",
   heroRenderMobile: "/assets/hero-mobile.png",
   heroVideo: "/assets/loader-sketch.mp4",

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import Image from "next/image";
 import gsap from "gsap";
 import { ASSETS } from "../data/content";
 
@@ -60,37 +59,41 @@ const Hero: React.FC<HeroProps> = ({ loaded = true }) => {
             alt="Aarambh Imperial exterior render"
             className="w-full h-auto block"
           />
-          {/* Gradients overlaid on the img */}
-          {/* <div className="absolute inset-0 bg-gradient-to-r from-cream/90 via-cream/55 to-transparent" /> */}
-          <div className="absolute inset-0 bg-gradient-to-t from-cream/30 via-transparent to-transparent" />
+          {/* Gradients overlaid on the img for text legibility */}
+          {/* <div className="absolute inset-0 bg-gradient-to-r from-cream/95 via-cream/60 to-transparent" /> */}
+          {/* <div className="absolute inset-0 bg-gradient-to-t from-cream/30 via-transparent to-transparent" /> */}
           {/* Subtle inner border */}
           <div className="absolute inset-0 rounded-[inherit] border border-white/30 pointer-events-none z-20" />
         </div>
 
-        {/* Text — absolutely centred vertically over the image */}
-        <div className="absolute inset-0 z-10 flex items-center px-6 md:px-8 lg:px-12 xl:px-16">
-          <div className="max-w-[480px] xl:max-w-[560px]">
+        {/* Text — absolutely positioned over the image card */}
+        <div className="absolute inset-0 z-10 flex flex-col justify-between py-12 lg:py-16 xl:py-20 px-6 md:px-8 lg:px-12 xl:px-16">
+          
+          {/* TOP: Logo replacement for header */}
+          <div data-hero-anim className="opacity-0 mt-8 lg:mt-12">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/assets/hero-logo.webp"
+              alt="Aarambh Imperial"
+              className="h-24 lg:h-28 xl:h-32 w-auto object-contain block"
+            />
+          </div>
 
-            <div
-              data-hero-anim
-              className="flex items-center gap-3 text-[10px] uppercase tracking-widestx text-gold-dark font-semibold opacity-0"
-            >
-              <span className="w-6 h-px bg-gold-dark/50" />
-              Not just a residence.
+          {/* BOTTOM: Content block (BHK, Location, Tagline) */}
+          <div className="max-w-[480px] xl:max-w-[560px] mb-6 lg:mb-8">
+            {/* BHK & Location Details */}
+            <div data-hero-anim className="space-y-1 opacity-0">
+              <div className="font-serif text-lg lg:text-xl xl:text-2xl text-teal">
+                2 &amp; 3 BHK Premium Apartments
+              </div>
+              <div className="text-xs lg:text-sm xl:text-base text-gold-dark font-medium tracking-wide">
+                V.P. Road, Mulund West
+              </div>
             </div>
 
-            <h2
-              data-hero-anim
-              className="mt-5 font-serif text-[3rem] lg:text-[3.8rem] xl:text-[4.4rem] leading-[1.06] tracking-tight text-charcoal opacity-0"
-              style={{ fontWeight: 400 }}
-            >
-              A LANDMARK<br />
-              <span className="text-teal">OF EXCEPTION.</span>
-            </h2>
-
             <div
               data-hero-anim
-              className="my-6 flex items-center gap-4 opacity-0"
+              className="my-5 flex items-center gap-4 opacity-0"
             >
               <div className="h-px w-10 bg-charcoal/20" />
               <span className="text-sm text-gold-dark">◊</span>
@@ -103,8 +106,8 @@ const Hero: React.FC<HeroProps> = ({ loaded = true }) => {
             >
               Aarambh Imperial is crafted for those who desire more from life.
             </p>
-
           </div>
+
         </div>
       </div>
 
@@ -122,36 +125,45 @@ const Hero: React.FC<HeroProps> = ({ loaded = true }) => {
           />
         </div>
 
-        {/* ── TOP overlay: eyebrow + heading over cream/sky area ── */}
+        {/* ── TOP overlay: logo left-aligned ── */}
         <div className="absolute top-0 inset-x-0 px-6 pt-24 sm:pt-28">
-          <div
-            data-hero-anim
-            className="flex items-center justify-center gap-2.5 text-[10px] uppercase tracking-widestx text-gold-dark font-semibold opacity-0"
-          >
-            <span className="w-5 h-px bg-gold-dark/60" />
-            Not just a residence.
-            <span className="w-5 h-px bg-gold-dark/60" />
-          </div>
 
-          <h2
-            data-hero-anim
-            className="mt-30 font-serif text-[1.8rem] sm:text-[3rem] leading-[1.06] tracking-tight text-charcoal opacity-0 text-left"
-            style={{ fontWeight: 400 }}
-          >
-            A LANDMARK<br />
-            <span className="text-teal">OF EXCEPTION.</span>
-          </h2>
+          {/* Logo replacement for header */}
+          <div data-hero-anim className="mt-4 opacity-0">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/assets/hero-logo.webp"
+              alt="Aarambh Imperial"
+              className="h-19 sm:h-16 w-auto object-contain block"
+            />
+          </div>
         </div>
 
         {/* ── BOTTOM overlay: tagline over blue water ── */}
         <div className="absolute bottom-0 inset-x-0 px-6 pb-10 sm:pb-14 text-center">
+          
+          {/* BHK & Location Details in a highly-readable glassmorphic card */}
+          <div className="text-left mb-5">
+            <div 
+              data-hero-anim 
+              className="inline-block bg-black/10 backdrop-blur-md border border-white/10 rounded-xl px-4 py-3 opacity-0"
+            >
+              <div className="font-serif text-[15px] sm:text-base text-white font-medium tracking-wide">
+                2 &amp; 3 BHK Premium Apartments
+              </div>
+              <div className="text-xs sm:text-sm text-gold font-medium tracking-wider mt-0.5">
+                V.P. Road, Mulund West
+              </div>
+            </div>
+          </div>
+
           <div
             data-hero-anim
             className="flex items-center justify-center gap-3 mb-4 opacity-0"
           >
-            <div className="h-px w-8 bg-white/80" />
-            <span className="text-sm text-white/90">◊</span>
-            <div className="h-px w-8 bg-white/80" />
+            <div className="h-px w-8 bg-white/100" />
+            <span className="text-sm text-white/100">◊</span>
+            <div className="h-px w-8 bg-white/100" />
           </div>
           <p
             data-hero-anim

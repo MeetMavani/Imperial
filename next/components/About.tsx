@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useCallback } from "react";
 import Image from "next/image";
 import { useReveal } from "../hooks/useReveal";
 import { ASSETS } from "../data/content";
@@ -8,6 +8,130 @@ import { ASSETS } from "../data/content";
 const About: React.FC = () => {
   const ref = useRef<HTMLElement>(null);
   useReveal(ref);
+
+  // ── 3D tilt + glare on left sketch card ──
+  const sketchRef = useRef<HTMLDivElement>(null);
+  const sketchGlareRef = useRef<HTMLDivElement>(null);
+  const sketchRafRef = useRef<number>(0);
+
+  const handleSketchMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) return;
+    const el = sketchRef.current;
+    const glare = sketchGlareRef.current;
+    if (!el) return;
+    
+    cancelAnimationFrame(sketchRafRef.current);
+    sketchRafRef.current = requestAnimationFrame(() => {
+      const { left, top, width, height } = el.getBoundingClientRect();
+      const mouseX = e.clientX - left;
+      const mouseY = e.clientY - top;
+      
+      const x = mouseX / width - 0.5;  // -0.5 to 0.5
+      const y = mouseY / height - 0.5;
+      
+      const rotY = x * 4;    // max ±2°
+      const rotX = -y * 4;   // max ±2°
+      
+      el.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.005, 1.005, 1.005)`;
+      
+      if (glare) {
+        glare.style.opacity = '1';
+        glare.style.background = `radial-gradient(circle at ${mouseX}px ${mouseY}px, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 60%)`;
+      }
+    });
+  }, []);
+
+  const handleSketchLeave = useCallback(() => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) return;
+    const el = sketchRef.current;
+    const glare = sketchGlareRef.current;
+    if (!el) return;
+    
+    cancelAnimationFrame(sketchRafRef.current);
+    el.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+    el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    
+    if (glare) {
+      glare.style.transition = 'opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+      glare.style.opacity = '0';
+    }
+    
+    const tid = setTimeout(() => {
+      if (el) el.style.transition = '';
+      if (glare) glare.style.transition = '';
+    }, 650);
+    return () => clearTimeout(tid);
+  }, []);
+
+  const handleSketchEnter = useCallback(() => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) return;
+    const el = sketchRef.current;
+    const glare = sketchGlareRef.current;
+    if (el) el.style.transition = '';
+    if (glare) glare.style.transition = '';
+  }, []);
+
+  // ── 3D tilt + glare on mission/vision card ──
+  const tiltRef = useRef<HTMLDivElement>(null);
+  const tiltGlareRef = useRef<HTMLDivElement>(null);
+  const rafRef  = useRef<number>(0);
+
+  const handleTiltMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) return;
+    const el = tiltRef.current;
+    const glare = tiltGlareRef.current;
+    if (!el) return;
+    
+    cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(() => {
+      const { left, top, width, height } = el.getBoundingClientRect();
+      const mouseX = e.clientX - left;
+      const mouseY = e.clientY - top;
+      
+      const x = mouseX / width  - 0.5;
+      const y = mouseY / height - 0.5;
+      
+      const rotY =  x * 3;    // max ±1.5°
+      const rotX = -y * 2;    // max ±1.0°
+      
+      el.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.002, 1.002, 1.002)`;
+      
+      if (glare) {
+        glare.style.opacity = '1';
+        glare.style.background = `radial-gradient(circle at ${mouseX}px ${mouseY}px, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 70%)`;
+      }
+    });
+  }, []);
+
+  const handleTiltLeave = useCallback(() => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) return;
+    const el = tiltRef.current;
+    const glare = tiltGlareRef.current;
+    if (!el) return;
+    
+    cancelAnimationFrame(rafRef.current);
+    el.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+    el.style.transform  = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    
+    if (glare) {
+      glare.style.transition = 'opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+      glare.style.opacity = '0';
+    }
+    
+    const tid = setTimeout(() => {
+      if (el) el.style.transition = '';
+      if (glare) glare.style.transition = '';
+    }, 650);
+    return () => clearTimeout(tid);
+  }, []);
+
+  const handleTiltEnter = useCallback(() => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) return;
+    const el = tiltRef.current;
+    const glare = tiltGlareRef.current;
+    if (el) el.style.transition = '';
+    if (glare) glare.style.transition = '';
+  }, []);
 
   return (
     <section
@@ -19,15 +143,27 @@ const About: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
           {/* Left: Decorative sketch */}
-          <div data-reveal className="relative">
+          <div data-reveal className="relative" style={{ perspective: '1000px' }}>
             <div className="absolute -top-6 -left-6 w-24 h-24 border-t border-l border-teal/40 hidden md:block" />
             <div className="absolute -bottom-6 -right-6 w-24 h-24 border-b border-r border-gold/50 hidden md:block" />
-            <div className="relative bg-white overflow-hidden shadow-subtle">
+            <div 
+              ref={sketchRef}
+              className="relative bg-white overflow-hidden shadow-subtle rounded-2xl will-change-transform cursor-pointer"
+              onMouseMove={handleSketchMove}
+              onMouseLeave={handleSketchLeave}
+              onMouseEnter={handleSketchEnter}
+            >
+              {/* Glare Layer */}
+              <div 
+                ref={sketchGlareRef}
+                className="absolute inset-0 pointer-events-none opacity-0 z-30 transition-opacity duration-300"
+                style={{ mixBlendMode: 'overlay' }}
+              />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={ASSETS.aboutSketch}
                 alt="Architectural sketch of Aarambh Imperial"
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover relative z-10"
                 style={{ mixBlendMode: "multiply" }}
               />
             </div>
@@ -55,12 +191,9 @@ const About: React.FC = () => {
               data-reveal
               className="text-muteink text-base md:text-lg leading-relaxed mt-7 max-w-xl"
             >
-              We deliver world-class engineering and construction services. As
-              pioneers in the Indian infrastructure industry, the Aarambh Group
-              has continued a legacy of innovation — achieving new milestones
-              with every endeavour. Our portfolio includes landmark projects
-              that have defined the country&apos;s progress and shaped how India
-              lives.
+              At Aarambh Realty, we believe a home is more than just a structure, it is the foundation of life's most meaningful moments. Aarambh Imperial is built on that belief, delivering residences crafted with uncompromising quality and attention to detail. <br />
+              Located in the heart of Mumbai, our homes are designed for those who value comfort, connectivity, and a lifestyle worth living. Every step of your journey with us, from inquiry to possession, is built on transparency, trust, and a commitment to getting it right.
+              Aarambh Imperial, Where Trust Meets Excellence.
             </p>
 
             {/* Decorative rule */}
@@ -74,9 +207,22 @@ const About: React.FC = () => {
         </div>
 
         {/* Mission & Vision — branded background images with overlaid content */}
-        <div className="mt-20 lg:mt-28" data-reveal>
-          {/* Wrapper: relative container so background image + content layer correctly */}
-          <div className="relative overflow-hidden rounded-sm">
+        <div className="mt-20 lg:mt-28" data-reveal style={{ perspective: '1200px' }}>
+          {/* Tilt card wrapper */}
+          <div
+            ref={tiltRef}
+            className="relative overflow-hidden rounded-2xl lg:rounded-3xl will-change-transform cursor-pointer"
+            style={{ transformStyle: 'preserve-3d' }}
+            onMouseMove={handleTiltMove}
+            onMouseLeave={handleTiltLeave}
+            onMouseEnter={handleTiltEnter}
+          >
+            {/* Glare Layer */}
+            <div 
+              ref={tiltGlareRef}
+              className="absolute inset-0 pointer-events-none opacity-0 z-30 transition-opacity duration-300"
+              style={{ mixBlendMode: 'overlay' }}
+            />
 
             {/* ── Background images ── */}
             {/* Mobile background (shown on < md) */}
@@ -99,7 +245,7 @@ const About: React.FC = () => {
                 alt=""
                 fill
                 sizes="100vw"
-                className="object-cover object-center"
+                className="object-cover object-center border"
                 priority
                 aria-hidden
               />
