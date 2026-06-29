@@ -15,16 +15,16 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "Aarambh Imperial — Premium Residences in Mulund West, Mumbai",
+  title: "Aarambh Imperial, Premium Residences in Mulund West, Mumbai",
   description:
-    "Discover Aarambh Imperial — premium 2 BHK and 3 BHK residences in Mulund West, Mumbai. 18,000 sq ft of amenities, strategic connectivity, and world-class construction.",
+    "Discover Aarambh Imperial, premium 2 BHK and 3 BHK residences in Mulund West, Mumbai. 18,000 sq ft of amenities, strategic connectivity, and world-class construction.",
   keywords:
     "Aarambh Imperial, Mulund West flats, 2BHK 3BHK Mumbai, premium residences Mulund, Aarambh builder Mumbai",
   icons: {
     icon: "/favicon.ico",
   },
   openGraph: {
-    title: "Aarambh Imperial — Premium Residences in Mulund West, Mumbai",
+    title: "Aarambh Imperial, Premium Residences in Mulund West, Mumbai",
     description:
       "Premium 2 BHK and 3 BHK residences in Mulund West, Mumbai by Aarambh Group.",
     url: "https://aarambhimperial.com",
@@ -41,9 +41,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aarambh Imperial — Premium Residences in Mulund West, Mumbai",
+    title: "Aarambh Imperial, Premium Residences in Mulund West, Mumbai",
     description:
-      "Discover Aarambh Imperial — premium 2 BHK and 3 BHK residences in Mulund West, Mumbai.",
+      "Discover Aarambh Imperial, premium 2 BHK and 3 BHK residences in Mulund West, Mumbai.",
     images: ["https://www.aarambhimperial.com/assets/logo.webp"],
   },
 };

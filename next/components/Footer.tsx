@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
             </h4>
             <p className="text-cream/70 text-sm md:text-[15px] leading-relaxed mt-4 max-w-sm">
               Aarambh Imperial is a landmark residential address in Mulund West
-              by the Aarambh Group — combining engineering pedigree with
+              by the Aarambh Group, combining engineering pedigree with
               considered design for a generation of refined Mumbai living.
             </p>
             <p className="text-cream/50 text-xs uppercase tracking-widestx mt-5">

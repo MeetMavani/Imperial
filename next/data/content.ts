@@ -76,7 +76,7 @@ export const FLOOR_TABS: FloorTab[] = [
     kind: "single",
     title: "The Two Bedroom Residence",
     description:
-      "Thoughtfully proportioned interiors with abundant natural light, a flowing living-dining and considered storage — designed for a refined urban life.",
+      "Thoughtfully proportioned interiors with abundant natural light, a flowing living-dining and considered storage, designed for a refined urban life.",
     image: "/assets/plans/floor-plan.webp",
     meta: [
       { label: "Carpet Area", value: "701 – 740 sq.ft." },
@@ -92,7 +92,7 @@ export const FLOOR_TABS: FloorTab[] = [
     kind: "single",
     title: "The Three Bedroom Residence",
     description:
-      "Expansive, light-filled homes with a master suite — crafted for families that value space, privacy and elegance.",
+      "Expansive, light-filled homes with a master suite, crafted for families that value space, privacy and elegance.",
     image: "/assets/plans/floor-plan.webp",
     meta: [
       { label: "Carpet Area", value: "892 – 1,189 sq.ft." },
@@ -108,7 +108,7 @@ export const FLOOR_TABS: FloorTab[] = [
     kind: "single",
     title: "Typical Floor Layout",
     description:
-      "A considered floor layout — corner apartments, cross-ventilation, and column-free living rooms that flow into private decks overlooking Mulund.",
+      "A considered floor layout, corner apartments, cross-ventilation, and column-free living rooms that flow into private decks overlooking Mulund.",
     image: "/assets/plans/floor-plan.webp",
     meta: [
       { label: "Apartments / Floor", value: "4" },
@@ -183,7 +183,7 @@ export const AMENITY_CATEGORIES: AmenityCategory[] = [
       },
       {
         name: "Yoga & Meditation Deck",
-        desc: "A serene open-air deck framed by greenery — for daily practice, sunrise to sunset.",
+        desc: "A serene open-air deck framed by greenery, for daily practice, sunrise to sunset.",
         url: "/assets/amenities/yoga.webp",
       },
       {
@@ -209,7 +209,7 @@ export const AMENITY_CATEGORIES: AmenityCategory[] = [
       },
       {
         name: "Indoor Games Zone",
-        desc: "Billiards, table tennis and board games — a refined corner for unwinding after work.",
+        desc: "Billiards, table tennis and board games, a refined corner for unwinding after work.",
         url: "/assets/amenities/indoor.webp",
       },
       {
@@ -230,7 +230,7 @@ export const AMENITY_CATEGORIES: AmenityCategory[] = [
       },
       {
         name: "Senior Citizen Corner",
-        desc: "A peaceful, shaded enclave with comfortable seating — for conversation and reflection.",
+        desc: "A peaceful, shaded enclave with comfortable seating, for conversation and reflection.",
         url: "/assets/amenities/senior.webp",
       },
     ],
@@ -247,7 +247,7 @@ export const AMENITY_CATEGORIES: AmenityCategory[] = [
 
       {
         name: "Power Backup for Common Amenities",
-        desc: "Power backup for all elevators, pumps and essential services — seamless living, uninterrupted.",
+        desc: "Power backup for all elevators, pumps and essential services, seamless living, uninterrupted.",
         url: "/assets/amenities/power.webp",
       },
       {
@@ -352,11 +352,11 @@ export interface Configuration {
 }
 
 export const CONFIGURATIONS: Configuration[] = [
-  { value: "2bhk-701", label: "2 BHK — 701 sq.ft." },
-  { value: "2bhk-740", label: "2 BHK — 740 sq.ft." },
-  { value: "3bhk-892", label: "Compact 3 BHK — 892 sq.ft." },
-  { value: "3bhk-993", label: "3 BHK — 993 sq.ft." },
-  { value: "3bhk-1189", label: "3 BHK — 1,189 sq.ft." },
+  { value: "2bhk-701", label: "2 BHK, 701 sq.ft." },
+  { value: "2bhk-740", label: "2 BHK, 740 sq.ft." },
+  { value: "3bhk-892", label: "Compact 3 BHK, 892 sq.ft." },
+  { value: "3bhk-993", label: "3 BHK, 993 sq.ft." },
+  { value: "3bhk-1189", label: "3 BHK, 1,189 sq.ft." },
   { value: "not-decided", label: "Not decided yet" },
 ];
 

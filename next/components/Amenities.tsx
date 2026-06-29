@@ -57,7 +57,7 @@ const Amenities: React.FC = () => {
             data-reveal
             className="text-muteink text-base md:text-lg leading-relaxed mt-5"
           >
-            18,000 sq ft dedicated to your wellbeing — across five thoughtfully
+            18,000 sq ft dedicated to your wellbeing, across five thoughtfully
             curated worlds within Aarambh Imperial.
           </p>
         </div>

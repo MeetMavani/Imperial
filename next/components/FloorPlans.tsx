@@ -501,7 +501,7 @@ const FloorPlansGated: React.FC = () => {
               Find Your <span className="italic text-teal">Perfect</span> Home
             </h2>
             <p className="text-muteink text-base md:text-lg leading-relaxed mt-5 max-w-3xl">
-              Thoughtfully designed configurations for every lifestyle —
+              Thoughtfully designed configurations for every lifestyle,
               considered layouts, generous proportions and uncompromised craftsmanship.
             </p>
           </div>
