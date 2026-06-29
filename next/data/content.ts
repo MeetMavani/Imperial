@@ -83,7 +83,6 @@ export const FLOOR_TABS: FloorTab[] = [
       { label: "Configuration", value: "2 BHK" },
       { label: "Bedrooms", value: "2" },
       { label: "Bathrooms", value: "2" },
-      { label: "Balconies", value: "1" },
       { label: "Pricing", value: "Price on Request" },
     ],
   },
@@ -93,14 +92,13 @@ export const FLOOR_TABS: FloorTab[] = [
     kind: "single",
     title: "The Three Bedroom Residence",
     description:
-      "Expansive, light-filled homes with generous balconies and a master suite — crafted for families that value space, privacy and elegance.",
+      "Expansive, light-filled homes with a master suite — crafted for families that value space, privacy and elegance.",
     image: "/assets/plans/floor-plan.webp",
     meta: [
       { label: "Carpet Area", value: "892 – 1,189 sq.ft." },
       { label: "Configuration", value: "Compact 3 BHK / 3 BHK" },
       { label: "Bedrooms", value: "3" },
       { label: "Bathrooms", value: "3" },
-      { label: "Balconies", value: "2" },
       { label: "Pricing", value: "Price on Request" },
     ],
   },
