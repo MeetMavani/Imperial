@@ -369,10 +369,10 @@ export interface ContactConfig {
 }
 
 export const CONTACT: ContactConfig = {
-  phone: "+91 9967279772",
+  phone: "+91 7373990808",
   email: "aarambhrealty09@gmail.com",
   address: "V.P. Road & Kasturba Rd, Mulund West, Mumbai 400080",
   whatsapp:
-    "https://wa.me/919967279772?text=Hello%2C%20I%20visited%20your%20website%20and%20I%27m%20interested%20in%20exploring%20your%20real%20estate%20offerings.%20I%20would%20appreciate%20it%20if%20you%20could%20share%20the%20project%20details%2C%20pricing%2C%20floor%20plans%2C%20and%20available%20inventory.%20Please%20let%20me%20know%20a%20convenient%20time%20to%20discuss%20further.%20Thank%20you.",
+    "https://wa.me/917373990808?text=Hello%2C%20I%20visited%20your%20website%20and%20I%27m%20interested%20in%20exploring%20your%20real%20estate%20offerings.%20I%20would%20appreciate%20it%20if%20you%20could%20share%20the%20project%20details%2C%20pricing%2C%20floor%20plans%2C%20and%20available%20inventory.%20Please%20let%20me%20know%20a%20convenient%20time%20to%20discuss%20further.%20Thank%20you.",
   rera: "RERA Reg. No. : -",
 };
