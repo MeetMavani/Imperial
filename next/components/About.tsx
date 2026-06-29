@@ -159,10 +159,11 @@ const About: React.FC = () => {
                 className="absolute inset-0 pointer-events-none opacity-0 z-30 transition-opacity duration-300"
                 style={{ mixBlendMode: 'overlay' }}
               />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src={ASSETS.aboutSketch}
                 alt="Architectural sketch of Aarambh Imperial"
+                width={800}
+                height={800}
                 className="w-full h-auto object-cover relative z-10"
                 style={{ mixBlendMode: "multiply" }}
               />

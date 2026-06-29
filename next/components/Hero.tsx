@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
+import Image from "next/image";
 import { ASSETS } from "../data/content";
 
 interface HeroProps {
@@ -53,11 +54,14 @@ const Hero: React.FC<HeroProps> = ({ loaded = true }) => {
 
         {/* Rounded card — image clipped inside */}
         <div data-hero-media className="relative w-full will-change-transform overflow-hidden rounded-2xl lg:rounded-3xl shadow-[0_24px_64px_rgba(0,0,0,0.14)]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={ASSETS.heroRender}
             alt="Aarambh Imperial exterior render"
-            className="w-full h-screen  block"
+            width={1920}
+            height={1080}
+            className="w-full h-screen object-cover block"
+            priority
+            sizes="100vw"
           />
           {/* Gradients overlaid on the img for text legibility */}
           {/* <div className="absolute inset-0 bg-gradient-to-r from-cream/70 via-cream/5 to-transparent" /> */}
@@ -119,11 +123,14 @@ const Hero: React.FC<HeroProps> = ({ loaded = true }) => {
 
         {/* Full portrait image — natural dimensions, no crop */}
         <div data-hero-media className="relative w-full will-change-transform">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={ASSETS.heroRenderMobile}
             alt="Aarambh Imperial exterior render"
+            width={1080}
+            height={1920}
             className="w-full h-auto block"
+            priority
+            sizes="100vw"
           />
         </div>
 

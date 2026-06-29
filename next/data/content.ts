@@ -10,10 +10,10 @@ export interface AssetConfig {
 
 export const ASSETS: AssetConfig = {
   logo: "/assets/logo-img.png",
-  heroRender: "/assets/hero-desktop-11.png",
-  heroRenderMobile: "/assets/hero-mobile-4.png",
+  heroRender: "/assets/hero-desktop-11.webp",
+  heroRenderMobile: "/assets/hero-mobile-4.webp",
   heroVideo: "/assets/loader-sketch.mp4",
-  aboutSketch: "/assets/building-frame.png",
+  aboutSketch: "/assets/building-frame.webp",
   missionVisionDesktop: "/assets/mission-vision/logo-desktop.png",
   missionVisionMobile: "/assets/mission-vision/logo-mobile.png",
 };
